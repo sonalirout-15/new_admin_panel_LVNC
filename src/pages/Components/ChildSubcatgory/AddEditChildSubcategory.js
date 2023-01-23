@@ -18,7 +18,6 @@ const AddEditChildSubcategory = () => {
   var { Subcategory_ref_id, Description, title, image } = formValue;
   const dispatch = useDispatch();
   var { id } = useParams();
-  console.log('ID~~~~~~~~>>>', id);
 
   const childSubcategory = useSelector((state) => state?.childSubcatgory?.childSubcatgeory?.rows);
   const subcategories = useSelector((state) => state?.subcategory?.subcategories?.categoryData?.rows);

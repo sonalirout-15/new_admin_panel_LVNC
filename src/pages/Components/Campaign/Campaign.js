@@ -56,7 +56,7 @@ const Campaign = () => {
       return (
         <>
         {
-            row.status === 0 ? (<div class="badge badge-danger">Inactive</div>) : (<div class="badge badge-success">Active</div>)
+            row.status === 0 ? (<div className="badge badge-danger">Inactive</div>) : (<div className="badge badge-success">Active</div>)
         }
         </>
       )
@@ -113,24 +113,24 @@ const Campaign = () => {
       }
   });
   }
-  const pagination = paginationFactory({
-    page: 1,
-    sizePerPage: 4,
-    lastPageText: '>>',
-    firstPageText: '>',
-    prePageText: '<',
-    showTotal: true,
-    alwaysShowAllBtns: true,
-    onPageChange: function (page, sizePerPage) {
-      console.log('page', page);
-      console.log('sizePerPage', sizePerPage)
-      console.log()
-    },
-    onSizePerPageChange: function (page, sizePerPage) {
-      console.log('page', page);
-      console.log('sizePerPage', sizePerPage)
-    }
-  })
+  // const pagination = paginationFactory({
+  //   page: 1,
+  //   sizePerPage: 4,
+  //   lastPageText: '>>',
+  //   firstPageText: '>',
+  //   prePageText: '<',
+  //   showTotal: true,
+  //   alwaysShowAllBtns: true,
+  //   onPageChange: function (page, sizePerPage) {
+  //     console.log('page', page);
+  //     console.log('sizePerPage', sizePerPage)
+  //     console.log()
+  //   },
+  //   onSizePerPageChange: function (page, sizePerPage) {
+  //     console.log('page', page);
+  //     console.log('sizePerPage', sizePerPage)
+  //   }
+  // })
 
   return (
       <div className="main-content">
@@ -162,7 +162,7 @@ const Campaign = () => {
                             <SearchBar {...props.searchProps} style={{ marginLeft: '10px' }} />
                             <BootstrapTable
                               {...props.baseProps}
-                              pagination={pagination}
+                              pagination={paginationFactory()}
                             />
                           </>
                         )

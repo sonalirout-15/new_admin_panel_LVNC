@@ -16,7 +16,6 @@ const ContactUsList = () => {
     }, [])
 
     const tableData = useSelector((state) => state?.user?.contactUsData)
-    console.log('Contact-data>>>>>', tableData)
     const [data, setData] = useState(tableData);
 
     useEffect(() => {
@@ -33,24 +32,25 @@ const ContactUsList = () => {
         { dataField: 'email', text: 'Email' },
         { dataField: 'title', text: 'Message' },
     ]
-    const pagination = paginationFactory({
-        page: 1,
-        sizePerPage: 4,
-        lastPageText: '>>',
-        firstPageText: '>',
-        prePageText: '<',
-        showTotal: true,
-        alwaysShowAllBtns: true,
-        onPageChange: function (page, sizePerPage) {
-            console.log('page', page);
-            console.log('sizePerPage', sizePerPage)
 
-        },
-        onSizePerPageChange: function (page, sizePerPage) {
-            console.log('page', page);
-            console.log('sizePerPage', sizePerPage)
-        }
-    })
+    // const pagination = paginationFactory({
+    //     page: 1,
+    //     sizePerPage: 4,
+    //     lastPageText: '>>',
+    //     firstPageText: '>',
+    //     prePageText: '<',
+    //     showTotal: true,
+    //     alwaysShowAllBtns: true,
+    //     onPageChange: function (page, sizePerPage) {
+    //         console.log('page', page);
+    //         console.log('sizePerPage', sizePerPage)
+
+    //     },
+    //     onSizePerPageChange: function (page, sizePerPage) {
+    //         console.log('page', page);
+    //         console.log('sizePerPage', sizePerPage)
+    //     }
+    // })
     return (
         <div className="main-content">
         <section className="section">
@@ -81,7 +81,7 @@ const ContactUsList = () => {
                                                 <SearchBar {...props.searchProps} style={{ marginLeft: '10px' }} />
                                                 <BootstrapTable
                                                     {...props.baseProps}
-                                                    pagination={pagination}
+                                                    pagination={paginationFactory()}
                                                 />
                                             </>
                                         )

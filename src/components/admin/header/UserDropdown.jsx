@@ -7,7 +7,6 @@ const UserDropdown = () => {
   const userData = userDetail;
   const history = useHistory();
 
-
   const handleClick = () => {
     localStorage.removeItem("ADMIN");
     history.push("/");
