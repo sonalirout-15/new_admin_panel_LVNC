@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { Link } from 'react-router-dom';
+import { MDBDataTable } from 'mdbreact';
 import { useDispatch, useSelector } from "react-redux";
-import BootstrapTable from 'react-bootstrap-table-next';
-import paginationFactory from 'react-bootstrap-table2-paginator';
 import { loadUserStart } from "../../../Redux/Actions/UserAction";
-import ToolkitProvider, {Search} from 'react-bootstrap-table2-toolkit/dist/react-bootstrap-table2-toolkit';
-const { SearchBar } = Search;
+
 
 
 const UsersList = () => {
@@ -22,46 +20,62 @@ const UsersList = () => {
         setData(tableData)
     }, [tableData])
 
-    const columns = [
+    const usersData = []
+    data && data.map((item , index) => {
+        usersData.push({
+        no:item.no = (
+          <div>{index+1}</div>
+        ),
+        username: item.username,
+        email: item.email,
+        phonenumber:item.phonenumber,
+        address: item.address,
+        status: item.status,
+      })
+    })
+  
+    const datas = {
+      columns: [
         {
-            text: 'No', formatter: (cell, row, rowIndex, formateExtraData) => {
-                return rowIndex + 1;
-            }, sort: true
+          label: 'No',
+          field: 'no',
+          sort: 'asc',
+          width: 150
         },
-        { dataField: 'username', text: 'Username' },
-        { dataField: 'email', text: 'Email' },
-        { dataField: 'phonenumber', text: 'Mobile' },
-        { dataField: 'address', text: 'Address' },
         {
-            dataField: 'status', text: 'Status', formatter: (cell, row) => {
-                return (
-                    <>
-                        {
-                            row.status === 0 ? (<div class="badge badge-danger">Inactive</div>) : (<div class="badge badge-success">Active</div>)
-                        }
-                    </>
-                )
-            }
+          label: 'User name',
+          field: 'username',
+          sort: 'asc',
+          width: 150
         },
-    ]
-    // const pagination = paginationFactory({
-    //     page: 1,
-    //     sizePerPage: 4,
-    //     lastPageText: '>>',
-    //     firstPageText: '>',
-    //     prePageText: '<',
-    //     showTotal: true,
-    //     alwaysShowAllBtns: true,
-    //     onPageChange: function (page, sizePerPage) {
-    //         console.log('page', page);
-    //         console.log('sizePerPage', sizePerPage)
-
-    //     },
-    //     onSizePerPageChange: function (page, sizePerPage) {
-    //         console.log('page', page);
-    //         console.log('sizePerPage', sizePerPage)
-    //     }
-    // })
+      
+        {
+          label: 'Email',
+          field: 'email',
+          width: 150
+        },
+        {
+          label: 'Mobile No',
+          field: 'phonenumber',
+          sort: 'asc',
+          width: 100
+        },
+        {
+            label: 'Address',
+            field: 'address',
+            sort: 'asc',
+            width: 100
+          },
+          {
+            label: 'Status',
+            field: 'status',
+            sort: 'asc',
+            width: 100
+          },
+      ],
+      rows: usersData
+    };
+  
     return (
             <div className="main-content">
                 <section className="section">
@@ -79,25 +93,12 @@ const UsersList = () => {
                                 </div>
                                 <div className="card-body p-0">
                                     <div className="table-responsive">
-                                        <ToolkitProvider
-                                            keyField="id"
-                                            columns={columns}
-                                            data={data}
-                                            search
-                                        >
-                                            {
-                                                props => (
-                                                    <>
-                                                        <h4 style={{ marginLeft: '10px' }}></h4>
-                                                        <SearchBar {...props.searchProps} style={{ marginLeft: '10px' }} />
-                                                        <BootstrapTable
-                                                            {...props.baseProps}
-                                                            pagination={paginationFactory()}
-                                                        />
-                                                    </>
-                                                )
-                                            }
-                                        </ToolkitProvider>
+                                    <MDBDataTable
+                                        striped
+                                        bordered
+                                        hover
+                                        data={datas}
+                                        />
                                     </div>
                                 </div>
                             </div>

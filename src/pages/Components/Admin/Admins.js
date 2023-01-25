@@ -1,11 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { useHistory } from 'react-router-dom';
+import {  useHistory } from 'react-router-dom';
+import { MDBDataTable } from 'mdbreact';
 import { useDispatch, useSelector } from "react-redux";
 import { loadAdminStart } from "../../../Redux/Actions/AdminActions";
-import BootstrapTable from 'react-bootstrap-table-next';
-import paginationFactory from 'react-bootstrap-table2-paginator';
-import ToolkitProvider, {Search} from 'react-bootstrap-table2-toolkit/dist/react-bootstrap-table2-toolkit';
-const { SearchBar } = Search;
 
 const Admins = () => {
   const dispatch = useDispatch();
@@ -14,6 +11,7 @@ const Admins = () => {
   useEffect(() => {
     dispatch(loadAdminStart())
   }, [])
+
   const tableData = useSelector((state) => state?.admin?.admin?.rows)
   const [data, setData] = useState(tableData);
 
@@ -21,79 +19,102 @@ const Admins = () => {
     setData(tableData)
   }, [tableData])
 
-  const columns = [
-    {
-      text: 'No', formatter: (cell, row, rowIndex, formateExtraData) => {
-        return rowIndex + 1;
-      }, sort: true
-    },
-    { dataField: 'name', text: 'Name' , sort: true},
-    { dataField: 'email', text: 'Email', sort: true },
-    { dataField: 'mobile', text: 'Mobile' },
-    { dataField: 'gender', text: 'Gender' },
-    { dataField: 'address', text: 'Address' },
-    {
-      dataField: 'image', text: 'Image', formatter: (cell, row) => {
-        return (
-          <img src={row.image} style={{ height: "50px" }} />
-        )
-      }
-    },
-    {
-      dataField: 'status', text: 'Status', formatter: (cell, row) => {
-        return (
-          <>
-            {
-              row.status === 0 ? (<div className="badge badge-danger">Inactive</div>) : (<div className="badge badge-success">Active</div>)
-            }
-          </>
-        )
-      }
-    },
-    {
-      text: 'Action', formatter: (cell, row) => {
-        return (
-          <>
-            <a
-              className="btn btn-primary btn-action mr-1"
+  const adminData = []
+  data && data.map((item , index) => {
+    adminData.push({
+      no:item.no = (
+        <div>{index+1}</div>
+      ),
+      name: item.name,
+      email: item.email,
+      mobile: item.mobile,
+      gender: item.gender,
+      address : item.address,
+      image:<img src={item.image} style={{ height: "60px" }}></img>,
+      status: item.status,
+      action: item.action = (
+       <>
+        <a
+              className="btn btn-primary btn-sm ml-2"
               data-toggle="tooltip"
               title="Edit"
-              onClick={() => history.push(`/editAdmin/${row.id}`)}
-            >
+              onClick={() => history.push(`/editAdmin/${item.id}`)}
+             >
               <i className="far fa-edit"></i>
-            </a>{" "}
-            <a
-              className="btn btn-info btn-action"
+           </a>{" "}
+            <button
+              className="btn btn-info btn-sm ml-3"
               data-toggle="tooltip"
               title="View"
-              onClick={() => history.push(`viewAdmin/${row.id}`)}
-            >
-              <i className="fas fa-eye"></i>
-            </a>
-          </>
-        )
+              onClick={() => history.push(`viewAdmin/${item.id}`)}
+              >
+                <i className="fas fa-eye"></i>
+            </button>
+       </>
+      )
+    })
+  })
+
+
+  const datas = {
+    columns: [
+      {
+        label: 'No',
+        field: 'no',
+        sort: 'asc',
+        width: 150
+      },
+      {
+        label: 'Name',
+        field: 'name',
+        sort: 'asc',
+        width: 150
+      },
+      {
+        label: 'Email',
+        field: 'email',
+        sort: 'asc',
+        width: 270
+      },
+      {
+        label: 'Mobile No',
+        field: 'mobile',
+        sort: 'asc',
+        width: 200
+      },
+      {
+        label: 'Gender',
+        field: 'gender',
+        sort: 'asc',
+        width: 100
+      },
+      {
+        label: 'Address',
+        field: 'address',
+        sort: 'asc',
+        width: 150
+      },
+      {
+        label: 'Image',
+        field: 'image',
+        sort: 'asc',
+        width: 150
+      },
+      {
+        label: 'Status',
+        field: 'status',
+        sort: 'asc',
+        width: 100
+      },
+      {
+        label: 'Action',
+        field: 'action'
       }
-    },
-  ]
+    ],
+    rows: adminData
+  };
 
-  // const pagination = paginationFactory({
-  //   page: 1,
-  //   sizePerPage: 4,
-  //   lastPageText: '>>',
-  //   firstPageText: '>',
-  //   prePageText: '<',
-  //   showTotal: true,
-  //   alwaysShowAllBtns: true,
-  //   onPageChange: function (page, sizePerPage) {
-  //     console.log('page', page);
-  //     console.log('sizePerPage', sizePerPage)
 
-  //   },
-  //   onSizePerPageChange: function (page, sizePerPage) {
-  //     console.log('page', page);
-  //     console.log('sizePerPage', sizePerPage)
-  //   }
-  // })
 
   return (
       <div className="main-content">
@@ -102,32 +123,19 @@ const Admins = () => {
             <h1>Admins</h1>
           </div>
           <div className="row">
-            <div className="col-lg-50 col-md-16 col-16 col-sm-50">
+            <div className="col-lg-12 col-md-16 col-16 col-sm-12">
               <div className="card">
                 <div className="card-header">
                   <h4>Admin Details</h4>
                 </div>
                 <div className="card-body p-0">
                   <div className="table-responsive">
-                    <ToolkitProvider
-                      keyField="id"
-                      columns={columns}
-                      data={data}
-                      search
-                    >
-                      {
-                        props => (
-                          <>
-                            <h4 style={{ marginLeft: '10px' }}></h4>
-                            <SearchBar {...props.searchProps} style={{ marginLeft: '10px' }} />
-                            <BootstrapTable
-                              {...props.baseProps}
-                              pagination={paginationFactory()}
-                            />
-                          </>
-                        )
-                      }
-                    </ToolkitProvider>
+                  <MDBDataTable
+                  striped
+                  bordered
+                  hover
+                  data={datas}
+                  />
                   </div>
                 </div>
               </div>

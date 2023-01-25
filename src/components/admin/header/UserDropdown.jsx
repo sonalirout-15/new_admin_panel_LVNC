@@ -1,35 +1,41 @@
 import React from "react";
-import {useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { userDetail } from "./Data";
-import Dropdown from 'react-bootstrap/Dropdown';
+import {
+  MDBDropdown,
+  MDBDropdownToggle,
+  MDBDropdownMenu,
+  MDBDropdownItem
+} from "mdbreact";
 
 const UserDropdown = () => {
   const userData = userDetail;
   const history = useHistory();
 
-  const handleClick = () => {
+  const handleClick = (e) => {
+    e.preventDefault();
     localStorage.removeItem("ADMIN");
     history.push("/");
   };
 
   return (
     <>
-      <Dropdown>
-        <Dropdown.Toggle variant="white" id="dropdown-basic" >
+
+      <MDBDropdown>
+        <MDBDropdownToggle nav caret>
           <img
             style={{ height: '40px', width: '40px' }}
             alt="image"
             src={userData.userImg}
             className="rounded-circle mr-1"
           />
-        </Dropdown.Toggle>
-
-        <Dropdown.Menu>
-          <Dropdown.Item onClick={() => history.push("/change-password")}>Change Password</Dropdown.Item>
-          <Dropdown.Item onClick={() => history.push("/reset-password")}>Reset Password</Dropdown.Item>
-          <Dropdown.Item onClick={handleClick}>Logout</Dropdown.Item>
-        </Dropdown.Menu>
-      </Dropdown>
+        </MDBDropdownToggle>
+        <MDBDropdownMenu >
+          <MDBDropdownItem onClick={() => history.push("/change-password")}>Change Password</MDBDropdownItem>
+          <MDBDropdownItem onClick={() => history.push("/reset-password")}>Reset Password</MDBDropdownItem>
+          <MDBDropdownItem onClick={handleClick}>Logout</MDBDropdownItem>
+        </MDBDropdownMenu>
+      </MDBDropdown>
     </>
   );
 };

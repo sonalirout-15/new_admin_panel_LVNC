@@ -1,87 +1,108 @@
 import React, { useEffect, useState } from "react";
+import { MDBDataTable } from 'mdbreact';
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
-import BootstrapTable from 'react-bootstrap-table-next';
-import paginationFactory from 'react-bootstrap-table2-paginator';
 import { deleteChildSubcategoryStart, loadChildSubcategoryStart } from "../../../Redux/Actions/ChildSubcategoryAction";
 import swal from "sweetalert";
-import ToolkitProvider, {Search} from 'react-bootstrap-table2-toolkit/dist/react-bootstrap-table2-toolkit';
-const { SearchBar } = Search;
 
 const ChildSubcategory = () => {
   const dispatch = useDispatch();
   const history = useHistory();
-  const childSubcategoryData = useSelector((state) => state?.childSubcatgory?.childSubcatgeory?.rows);
+  const childSubcategoriesData = useSelector((state) => state?.childSubcatgory?.childSubcatgeory?.rows);
 
   useEffect(() => {
     dispatch(loadChildSubcategoryStart())
   }, [])
   
-  const [data, setData] = useState(childSubcategoryData)
+  const [data, setData] = useState(childSubcategoriesData)
   useEffect(() => {
-    setData(childSubcategoryData)
-  }, [childSubcategoryData])
+    setData(childSubcategoriesData)
+  }, [childSubcategoriesData])
 
-  const columns = [
-    {
-      text: 'No', formatter: (cell, row, rowIndex, formateExtraData) => {
-        return rowIndex + 1;
-      },
-      sort: true
-    },
-    { dataField: 'Subcategory_ref_id', text: 'SubCategory Ref Id' },
-    { dataField: 'title', text: 'Title', sort: true },
-    { dataField: 'Description', text: 'Description', sort: true },
-    {
-        dataField: 'image', text: 'Image', formatter: (cell, row) => {
-          return (
-            <img src={row.image} style={{ height: "50px" }} />
-          )
-        }
-      },
-    { dataField: 'status', text: 'Status', sort: true , formatter:(cell, row) => {
-      return (
-        <>
-        {
-            row.status === 0 ? (<div className="badge badge-danger">Inactive</div>) : (<div className="badge badge-success">Active</div>)
-        }
-        </>
-      )
-    }},
-    {
-      text: 'Action', formatter: (cell, row) => {
-        return (
-          <>
-             <a
-              className="btn btn-primary btn-action mr-1"
+  const childsubcategoryData = []
+  data && data.map((item , index) => {
+    childsubcategoryData.push({
+      no:item.no = (
+        <div>{index+1}</div>
+      ),
+      Subcategory_ref_id: item.Subcategory_ref_id,
+      title: item.title,
+      Description: item.Description,
+      image:<img src={item.image} style={{ height: "60px" }}></img>,
+      status: item.status,
+      action: item.action = (
+       <>
+        <button
+              className="btn btn-primary btn-sm ml-2"
               data-toggle="tooltip"
               title="Edit"
-              onClick={() => history.push(`/editChildSubcategory/${row.id}`)}
+              onClick={() => history.push(`/editChildSubcategory/${item.id}`)}
              >
               <i className="far fa-edit"></i>
-           </a>{" "}
-           <a
-              className="btn btn-danger btn-action"
+           </button>
+           <button
+              className="btn btn-danger btn-sm ml-2"
               data-toggle="tooltip"
               title="Delete"
-              onClick={() => handleDelete(row.id)}
-              >
+              onClick={() => handleDelete(item.id)}
+             >
               <i className="fas fa-trash"></i>
-            </a>{" "}
-            <a
-              className="btn btn-info btn-action"
+           </button>
+            <button
+              className="btn btn-info btn-sm ml-3"
               data-toggle="tooltip"
               title="View"
-              onClick={() => history.push(`viewChildSubcategory/${row.id}`)}
+              onClick={() => history.push(`viewChildSubcategory/${item.id}`)}
               >
                 <i className="fas fa-eye"></i>
-            </a>
-          </>
-        )
-      }
-    },
-  ]
+            </button>
+       </>
+      )
+    })
+  })
 
+  const datas = {
+    columns: [
+      {
+        label: 'No',
+        field: 'no',
+        sort: 'asc',
+        width: 150
+      },
+      {
+        label: 'Subcategory Ref Id',
+        field: 'Subcategory_ref_id',
+        sort: 'asc',
+        width: 150
+      },
+      {
+        label: 'Title',
+        field: 'title',
+        width: 150
+      },
+      {
+        label: 'Description',
+        field: 'Description',
+        width: 150
+      },
+      {
+        label: 'Image',
+        field: 'image',
+        width: 150
+      },
+      {
+        label: 'Status',
+        field: 'status',
+        sort: 'asc',
+        width: 100
+      },
+      {
+        label: 'Action',
+        field: 'action'
+      }
+    ],
+    rows: childsubcategoryData
+  };
 
   const handleDelete = (id) => {
     swal({
@@ -101,25 +122,6 @@ const ChildSubcategory = () => {
       }
   });
   }
-
-  // const pagination = paginationFactory({
-  //   page: 1,
-  //   sizePerPage: 4,
-  //   lastPageText: '>>',
-  //   firstPageText: '>',
-  //   prePageText: '<',
-  //   showTotal: true,
-  //   alwaysShowAllBtns: true,
-  //   onPageChange: function (page, sizePerPage) {
-  //     console.log('page', page);
-  //     console.log('sizePerPage', sizePerPage)
-  //     console.log()
-  //   },
-  //   onSizePerPageChange: function (page, sizePerPage) {
-  //     console.log('page', page);
-  //     console.log('sizePerPage', sizePerPage)
-  //   }
-  // })
   
   return (
       <div className="main-content">
@@ -138,24 +140,12 @@ const ChildSubcategory = () => {
                 </div>
                 <div className="card-body p-0">
                   <div className="table-responsive">
-                    <ToolkitProvider
-                      keyField="id"
-                      columns={columns}
-                      data={data}
-                    //   search
-                    >{
-                        props => (
-                          <>
-                            <h3 style={{ marginLeft: '10px' }}></h3>
-                            <SearchBar {...props.searchProps} style={{ marginLeft: '10px' }} />
-                            <BootstrapTable
-                              {...props.baseProps}
-                              pagination={paginationFactory()}
-                            />
-                          </>
-                        )
-                      }
-                    </ToolkitProvider>
+                  <MDBDataTable
+                  striped
+                  bordered
+                  hover
+                  data={datas}
+                  />
                   </div>
                 </div>
               </div>

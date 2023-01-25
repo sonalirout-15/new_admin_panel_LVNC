@@ -30,6 +30,7 @@ const Login = () =>  {
   }
 
   const handleSubmit = (e) => {
+    e.preventDefault()
     setSubmit(true);
     setData(data)
     if(data.email !== '' && data.password !== '') {
@@ -43,6 +44,7 @@ const Login = () =>  {
 
   if (admin?.message === 'Login successful'){
     history.push("/dashboard");
+    window.location.reload()
   }
 
     return (

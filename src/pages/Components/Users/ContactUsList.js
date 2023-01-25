@@ -1,11 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { MDBDataTable } from 'mdbreact';
 import { Link } from "react-router-dom";
-import BootstrapTable from 'react-bootstrap-table-next';
-import paginationFactory from 'react-bootstrap-table2-paginator';
 import { loadUserContactUsStart } from "../../../Redux/Actions/UserAction";
-import ToolkitProvider, {Search} from 'react-bootstrap-table2-toolkit/dist/react-bootstrap-table2-toolkit';
-const { SearchBar } = Search;
 
 
 const ContactUsList = () => {
@@ -22,35 +19,50 @@ const ContactUsList = () => {
         setData(tableData)
     }, [tableData])
 
-    const columns = [
+    const usersData = []
+    data && data.map((item , index) => {
+        usersData.push({
+        no:item.no = (
+          <div>{index+1}</div>
+        ),
+        name: item.name,
+        email: item.email,
+        title:item.title,
+      })
+    })
+  
+    const datas = {
+      columns: [
         {
-            text: 'No', formatter: (cell, row, rowIndex, formateExtraData) => {
-                return rowIndex + 1;
-            }, sort: true
+          label: 'No',
+          field: 'no',
+          sort: 'asc',
+          width: 150
         },
-        { dataField: 'name', text: 'Username' },
-        { dataField: 'email', text: 'Email' },
-        { dataField: 'title', text: 'Message' },
-    ]
+        {
+          label: 'Name',
+          field: 'name',
+          sort: 'asc',
+          width: 150
+        },
+      
+        {
+          label: 'Email',
+          field: 'email',
+          width: 150
+        },
+        {
+          label: 'Message',
+          field: 'title',
+          sort: 'asc',
+          width: 100
+        },
+          
+      ],
+      rows: usersData
+    };
 
-    // const pagination = paginationFactory({
-    //     page: 1,
-    //     sizePerPage: 4,
-    //     lastPageText: '>>',
-    //     firstPageText: '>',
-    //     prePageText: '<',
-    //     showTotal: true,
-    //     alwaysShowAllBtns: true,
-    //     onPageChange: function (page, sizePerPage) {
-    //         console.log('page', page);
-    //         console.log('sizePerPage', sizePerPage)
 
-    //     },
-    //     onSizePerPageChange: function (page, sizePerPage) {
-    //         console.log('page', page);
-    //         console.log('sizePerPage', sizePerPage)
-    //     }
-    // })
     return (
         <div className="main-content">
         <section className="section">
@@ -68,25 +80,12 @@ const ContactUsList = () => {
                         </div>
                         <div className="card-body p-0">
                             <div className="table-responsive">
-                                <ToolkitProvider
-                                    keyField="id"
-                                    columns={columns}
-                                    data={data}
-                                    search
-                                >
-                                    {
-                                        props => (
-                                            <>
-                                                <h4 style={{ marginLeft: '10px' }}></h4>
-                                                <SearchBar {...props.searchProps} style={{ marginLeft: '10px' }} />
-                                                <BootstrapTable
-                                                    {...props.baseProps}
-                                                    pagination={paginationFactory()}
-                                                />
-                                            </>
-                                        )
-                                    }
-                                </ToolkitProvider>
+                            <MDBDataTable
+                                striped
+                                bordered
+                                hover
+                                data={datas}
+                            />
                             </div>
                         </div>
                     </div>

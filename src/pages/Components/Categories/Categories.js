@@ -1,12 +1,9 @@
 import React, { useEffect, useState } from "react";
+import { MDBDataTable } from 'mdbreact';
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
-import BootstrapTable from 'react-bootstrap-table-next';
-import paginationFactory from 'react-bootstrap-table2-paginator';
 import { deleteCategoryStart, loadCategoryStart } from "../../../Redux/Actions/CategoryAction";
 import swal from "sweetalert";
-import ToolkitProvider, {Search} from 'react-bootstrap-table2-toolkit/dist/react-bootstrap-table2-toolkit';
-const { SearchBar } = Search;
 
 
 const Categories = () => {
@@ -24,65 +21,79 @@ const Categories = () => {
     setData(categoriesData)
   }, [categoriesData])
 
- 
-
-  const columns = [
-    {
-      text: 'No', formatter: (cell, row, rowIndex, formateExtraData) => {
-        return rowIndex + 1;
-      },
-      sort: true
-    },
-    { dataField: 'category_name', text: 'Category Name', sort: true },
-    { dataField: 'status', text: 'Status', sort: true , formatter:(cell, row) => {
-      return (
-        <>
-        {
-            row.status === 0 ? (<div className="badge badge-danger">Inactive</div>) : (<div className="badge badge-success">Active</div>)
-        }
-        </>
-      )
-    }},
-    { dataField: 'header', text: 'Category Header Status', sort: true },
-    {
-      text: 'Action', formatter: (cell, row) => {
-        return (
-          <>
-             <a
-              className="btn btn-primary btn-action mr-1"
+  const categoryData = []
+  data && data.map((item , index) => {
+    categoryData.push({
+      no:item.no = (
+        <div>{index+1}</div>
+      ),
+      category_name: item.category_name,
+      status: item.status,
+      header: item.header,
+      action: item.action = (
+       <>
+        <button
+              className="btn btn-primary btn-sm ml-2"
               data-toggle="tooltip"
               title="Edit"
-              onClick={() => history.push(`/editCategory/${row.id}`)}
+              onClick={() => history.push(`/editCategory/${item.id}`)}
              >
               <i className="far fa-edit"></i>
-           </a>{" "}
-           <a
-              className="btn btn-danger btn-action"
+           </button>{" "}
+           <button
+              className="btn btn-danger btn-sm ml-2"
               data-toggle="tooltip"
               title="Delete"
-              onClick={() => handleDelete(row.id)}
-              >
+              onClick={() => handleDelete(item.id)}
+             >
               <i className="fas fa-trash"></i>
-            </a>{" "}
-            <a
-              className="btn btn-info btn-action"
+           </button>{" "}
+            <button
+              className="btn btn-info btn-sm ml-3"
               data-toggle="tooltip"
-              title="Delete"
-              onClick={() => history.push(`viewCategory/${row.id}`)}
+              title="View"
+              onClick={() => history.push(`viewCategory/${item.id}`)}
               >
                 <i className="fas fa-eye"></i>
-            </a>
-          </>
-        )
-      }
-    },
-  ]
+            </button>
+       </>
+      )
+    })
+  })
 
-  // const handleDelete = (id) => {
-  //   if (window.confirm("Are you sure that you wanted to delete that category?")) {
-  //     dispatch(deleteCategoryStart(id))
-  //   }
-  // }
+  const datas = {
+    columns: [
+      {
+        label: 'No',
+        field: 'no',
+        sort: 'asc',
+        width: 150
+      },
+      {
+        label: 'Category Name',
+        field: 'category_name',
+        sort: 'asc',
+        width: 150
+      },
+      {
+        label: 'Status',
+        field: 'status',
+        sort: 'asc',
+        width: 100
+      },
+      {
+        label: 'Header Status',
+        field: 'header',
+        sort: 'asc',
+        width: 100
+      },
+      {
+        label: 'Action',
+        field: 'action'
+      }
+    ],
+    rows: categoryData
+  };
 
   const handleDelete = (id) => {
     swal({
@@ -105,24 +116,6 @@ const Categories = () => {
   }
 
 
-  // const pagination = paginationFactory({
-  //   page: 1,
-  //   sizePerPage: 4,
-  //   lastPageText: '>>',
-  //   firstPageText: '>',
-  //   prePageText: '<',
-  //   showTotal: true,
-  //   alwaysShowAllBtns: true,
-  //   onPageChange: function (page, sizePerPage) {
-  //     console.log('page', page);
-  //     console.log('sizePerPage', sizePerPage)
-  //     console.log()
-  //   },
-  //   onSizePerPageChange: function (page, sizePerPage) {
-  //     console.log('page', page);
-  //     console.log('sizePerPage', sizePerPage)
-  //   }
-  // })
 
   return (
     <>
@@ -142,29 +135,12 @@ const Categories = () => {
                 </div>
                 <div className="card-body p-0">
                   <div className="table-responsive">
-                    <ToolkitProvider
-                      keyField="id"
-                      columns={columns}
-                      data={data}
-                      search
-                    >
-                      {
-                        props => (
-                          <>
-                            <h3 style={{ marginLeft: '10px' }}></h3>
-                            <SearchBar {...props.searchProps} style={{ marginLeft: '10px' }} />
-                            <BootstrapTable
-                              {...props.baseProps}
-                              pagination={paginationFactory()}
-                            />
-                          </>
-                        )
-                      }
-                      
-
-                    </ToolkitProvider>
-
-                    
+                  <MDBDataTable
+                  striped
+                  bordered
+                  hover
+                  data={datas}
+                  />
                   </div>
                 </div>
               </div>
