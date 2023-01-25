@@ -26,7 +26,7 @@ const ViewBanner = () => {
                 <div className="card">
                   <div className="card-header">
                     <h4>Single Banner Image</h4>
-                    <Link style={{ marginLeft: '70%' }} to={'/banner'} classNameName="btn btn-primary">Back</Link>
+                    <Link style={{ marginLeft: '70%' }} to={'/banner'} className="btn btn-primary">Back</Link>
                   </div>
                   <div className="card-body">
                     <div className="table-responsive">

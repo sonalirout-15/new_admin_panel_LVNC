@@ -26,7 +26,7 @@ const ViewCampaign = () => {
                 <div className="card">
                   <div className="card-header">
                     <h4>Single Campaign</h4>
-                    <Link style={{ marginLeft: '70%' }} to={'/campaign'} classNameName="btn btn-primary">Back</Link>
+                    <Link style={{ marginLeft: '70%' }} to={'/campaign'} className="btn btn-primary">Back</Link>
                   </div>
                   <div className="card-body">
                     <div className="table-responsive">

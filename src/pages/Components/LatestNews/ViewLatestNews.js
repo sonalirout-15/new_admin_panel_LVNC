@@ -27,7 +27,7 @@ const ViewLatestNews = () => {
                 <div className="card">
                   <div className="card-header">
                     <h4>Single Latest News</h4>
-                    <Link style={{ marginLeft: '70%' }} to={'/latestNews'} classNameName="btn btn-primary">Back</Link>
+                    <Link style={{ marginLeft: '70%' }} to={'/latestNews'} className="btn btn-primary">Back</Link>
                   </div>
                   <div className="card-body">
                     <div className="table-responsive">

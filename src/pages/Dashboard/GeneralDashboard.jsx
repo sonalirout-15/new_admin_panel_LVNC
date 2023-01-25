@@ -63,7 +63,7 @@ const GeneralDashboard = () => {
   const campaningsData = useSelector((state) => state?.campaning?.campaning?.CampaningData?.count);
   const usersData = useSelector((state) => state?.user?.user?.data?.count);
   const latestNewsData = useSelector((state) => state?.latestnewsData?.latestnews?.count);
-  const bannerData = useSelector((state) => state?.banner?.bannerImageData?.BannerData);
+
 
   return (
       <div className="main-content">

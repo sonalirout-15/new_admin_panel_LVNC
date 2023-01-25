@@ -26,7 +26,7 @@ const ViewPost = () => {
                 <div className="card">
                   <div className="card-header">
                     <h4>Single Post</h4>
-                    <Link style={{ marginLeft: '70%' }} to={'/post'} classNameName="btn btn-primary">Back</Link>
+                    <Link style={{ marginLeft: '70%' }} to={'/post'} className="btn btn-primary">Back</Link>
                   </div>
                   <div className="card-body">
                     <div className="table-responsive">

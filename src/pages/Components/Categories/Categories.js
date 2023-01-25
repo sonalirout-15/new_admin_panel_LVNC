@@ -125,7 +125,7 @@ const Categories = () => {
             <h1>Categories</h1>
           </div>
           <div className="row">
-            <div className="col-lg-10 col-md-12 col-12 col-sm-14">
+            <div className="col-lg-15 col-md-12 col-12 col-sm-15">
               <div className="card">
                 <div className="card-header">
                   <h4>Categories Details</h4>

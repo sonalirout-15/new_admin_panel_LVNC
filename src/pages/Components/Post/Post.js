@@ -54,7 +54,7 @@ const Post = () => {
               <i className="fas fa-trash"></i>
            </button>
             <button
-              className="btn btn-info btn-sm ml-3"
+              className="btn btn-info btn-sm ml-2"
               data-toggle="tooltip"
               title="View"
               onClick={() => history.push(`/viewPost/${item.id}`)}

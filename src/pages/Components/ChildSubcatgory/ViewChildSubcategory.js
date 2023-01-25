@@ -27,7 +27,7 @@ const ViewChildSubcategory = () => {
                 <div className="card">
                   <div className="card-header">
                     <h4>Single Child Subcategory</h4>
-                    <Link style={{ marginLeft: '70%' }} to={'/childSubcategory'} classNameName="btn btn-primary">Back</Link>
+                    <Link style={{ marginLeft: '70%' }} to={'/childSubcategory'} className="btn btn-primary">Back</Link>
                   </div>
                   <div className="card-body">
                     <div className="table-responsive">

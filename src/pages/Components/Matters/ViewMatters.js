@@ -26,7 +26,7 @@ const ViewMatters = () => {
                 <div className="card">
                   <div className="card-header">
                     <h4>Single Metters</h4>
-                    <Link style={{ marginLeft: '70%' }} to={'/metters'} classNameName="btn btn-primary">Back</Link>
+                    <Link style={{ marginLeft: '70%' }} to={'/metters'} className="btn btn-primary">Back</Link>
                   </div>
                   <div className="card-body">
                     <div className="table-responsive">

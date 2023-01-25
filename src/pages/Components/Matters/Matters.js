@@ -52,7 +52,7 @@ const Matters = () => {
               <i className="fas fa-trash"></i>
            </button>
             <button
-              className="btn btn-info btn-sm ml-3"
+              className="btn btn-info btn-sm ml-2"
               data-toggle="tooltip"
               title="View"
               onClick={() => history.push(`/viewMatters/${item.id}`)}
@@ -140,7 +140,7 @@ const Matters = () => {
             <h1>Matters</h1>
           </div>
           <div className="row">
-            <div className="col-lg-12 col-md-14 col-14 col-sm-24">
+            <div className="col-lg-24 col-md-14 col-14 col-sm-24">
               <div className="card">
                 <div className="card-header">
                   <h4>Matters Details</h4>

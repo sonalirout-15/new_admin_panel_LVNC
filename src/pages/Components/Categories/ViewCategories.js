@@ -27,7 +27,7 @@ const ViewCategories = () => {
                 <div className="card">
                   <div className="card-header">
                     <h4>Single Category</h4>
-                    <Link style={{ marginLeft: '70%' }} to={'/categories'} classNameName="btn btn-primary">Back</Link>
+                    <Link style={{ marginLeft: '70%' }} to={'/categories'} className="btn btn-primary">Back</Link>
                   </div>
                   <div className="card-body">
                     <div className="table-responsive">

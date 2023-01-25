@@ -11,8 +11,6 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./assets/css/style.css";
 import "@fortawesome/fontawesome-free/css/all.css";
 import "@mdi/font/css/materialdesignicons.min.css";
-// import "ionicons201/css/ionicons.min.css";
-// import "@mdi/font/css/materialdesignicons.min.css";
 import "./assets/css/components.css";
 import 'mdbreact/dist/css/mdb.css';
 
