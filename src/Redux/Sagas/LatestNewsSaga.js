@@ -6,7 +6,6 @@ import {
     call,
     all,
     takeEvery,
-    delay
 } from "redux-saga/effects";
 import Swal from 'sweetalert2';
 import { createLatestNewsApi, deleteLatestNewsApi, getSingleLatestNewsApi, loadLatestNewsApi, updateLatestNewsApi } from '../APIs/LatestNewsApi';
@@ -100,7 +99,6 @@ export function* onDeleteLatestNewsStartAsync({ payload }) {
     try {
         const response = yield call(deleteLatestNewsApi, payload)
         if (response.data.message === "Success") {
-            yield delay(500)
             yield put(deleteLatestNewsSuccess(response.data.data))
             Toast.fire({
                 icon: "success",
@@ -114,6 +112,42 @@ export function* onDeleteLatestNewsStartAsync({ payload }) {
         }
     } catch (error) {
         yield put(deleteLatestNewsError(error.response.data))
+        if(error.response.data.errors.title) {
+            Toast.fire({
+                icon: "error",
+                title: error.response.data.errors.title,
+            });
+        } else if(error.response.data.errors.Description){
+            Toast.fire({
+                icon: "error",
+                title: error.response.data.errors.Description,
+            });
+        } else if(error.response.data.errors.image){
+            Toast.fire({
+                icon: "error",
+                title: error.response.data.errors.image,
+            });
+        } else if (error.response.data.errors.video) {
+            Toast.fire({
+                icon: "error",
+                title: error.response.data.errors.video,
+            });
+        } else if(error.response.data.errors.category_ref_id){
+            Toast.fire({
+                icon: "error",
+                title: error.response.data.errors.category_ref_id,
+            });
+        } else if(error.response.data.errors.Subcategory_ref_id){
+            Toast.fire({
+                icon: "error",
+                title: error.response.data.errors.Subcategory_ref_id,
+            });
+        } else {
+            Toast.fire({
+                icon: "error",
+                title: error.response.data.errors.message,
+            });
+        }
     }
 }
 

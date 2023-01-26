@@ -1,13 +1,12 @@
 import * as types from '../ActionTypes/AdminActionTypes';
-    import {
-        all,
-        put,
-        call,
-        fork,
-        takeEvery,
-        takeLatest,
-        delay
-    } from 'redux-saga/effects';
+import {
+    all,
+    put,
+    call,
+    fork,
+    takeEvery,
+    takeLatest,
+} from 'redux-saga/effects';
 import Swal from 'sweetalert2';
 import {
     adminChangePasswordApi,
@@ -15,7 +14,6 @@ import {
     adminLoginApi,
     adminResetPasswordApi,
     createAdminApi,
-    deleteAdminApi,
     getSingleAdminApi,
     loadAdminApi,
     updateAdminApi
@@ -53,8 +51,7 @@ export function* onAdminLoginStartAsync({ payload }) {
     try {
     const response = yield call(adminLoginApi, payload) 
     if (response.data.status === 200) {
-        localStorage.setItem("ADMIN", JSON.stringify(response.data.data.token));
-        localStorage.setItem('ADMINEMAIL',  response.data.userEmail)
+        localStorage.setItem("ADMIN", JSON.stringify(response.data.data.token))
         yield put(adminLoginSuccess(response.data));
         Toast.fire({
             icon: "success",
@@ -266,7 +263,6 @@ export function* onUpdateAdminStartAsync({ payload }) {
     try {
         const response = yield call(updateAdminApi, payload)
         if (response.data.status === 200) {
-            console.log('RESPONSE~~~~~~~~~~~~~>>>', response.data)
             yield put(updateAdminSuccess(response.data))
             Toast.fire({
                 icon: "success",

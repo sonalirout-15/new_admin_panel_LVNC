@@ -6,7 +6,6 @@ import {
     call,
     all,
     takeEvery,
-    delay
 } from "redux-saga/effects";
 import Swal from 'sweetalert2';
 import { createChildSubcategoryApi, deleteChildSubcategoryApi, getSingleChildSubcategoryApi, loadChildSubcategoryApi, updateChildSubcategoryApi } from '../APIs/ChildSubcategoryApi';
@@ -24,7 +23,6 @@ export function* onLoadChildSubcategoryStartAsync() {
     try {
         const response = yield call(loadChildSubcategoryApi);
         if (response.data.message === "Success") {
-            // console.log('RESPONSE~~~~~~~~~~~????>>>>', response.data.categoryData);
             yield put(loadChildSubcategorySuccess(response.data.categoryData))
         }
     } catch (error) {
@@ -36,7 +34,6 @@ export function* onGetSingleChildSubcategoryStartAsync({ payload }) {
     try {
         const response = yield call(getSingleChildSubcategoryApi, payload);
         if (response.data.message === "Success") {
-            // console.log('RESPONSE~~~~~~~~~~~~>>', response.data.categoryData)
             yield put(getSingleChildSubcategorySuccess(response.data.categoryData))
         }
     } catch (error) {
@@ -88,7 +85,6 @@ export function* onDeleteChildSubcategoryStartAsync({ payload }) {
     try {
         const response = yield call(deleteChildSubcategoryApi, payload)
         if (response.data.message === "Success") {
-            yield delay(500)
             yield put(deleteChildSubcategorySuccess(response.data))
             Toast.fire({
                 icon: "success",
@@ -102,6 +98,28 @@ export function* onDeleteChildSubcategoryStartAsync({ payload }) {
         }
     } catch (error) {
         yield put(deleteChildSubcategoryError(error.response.data))
+        if(error.response.data.errors.Description) {
+            Toast.fire({
+                icon: "error",
+                title: error.response.data.errors.Description,
+            });
+        } else if(error.response.data.errors.title){
+            Toast.fire({
+                icon: "error",
+                title: error.response.data.errors.title,
+            });
+        } else if(error.response.data.errors.image){
+            Toast.fire({
+                icon: "error",
+                title: error.response.data.errors.image,
+            });
+        } else {
+            Toast.fire({
+                icon: "error",
+                title: error.response.data.errors.message,
+            });
+        }
+        
     }
 }
 

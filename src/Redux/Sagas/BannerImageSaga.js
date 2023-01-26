@@ -5,12 +5,11 @@ import {
     call,
     all,
     takeEvery,
-    delay,
     takeLatest
 } from "redux-saga/effects";
 import Swal from 'sweetalert2';
-import { createBannerImageApi, deleteBannerImageApi, getSingleBannerImageApi, loadBannerImageApi, updateBannerApi, updateBannerImageApi } from '../APIs/BannerImageApi';
-import { createBannerImageError, createBannerImageSuccess, deleteBannerImageError, deleteBannerImageSuccess, getSingleBannerImageError, getSingleBannerImageSuccess, loadBannerImageError, loadBannerImageSuccess, updateBannerError, updateBannerImageError, updateBannerImageSuccess } from '../Actions/BannerImageAction';
+import { createBannerImageApi, deleteBannerImageApi, getSingleBannerImageApi, loadBannerImageApi, updateBannerImageApi } from '../APIs/BannerImageApi';
+import { createBannerImageError, createBannerImageSuccess, deleteBannerImageError, deleteBannerImageSuccess, getSingleBannerImageError, getSingleBannerImageSuccess, loadBannerImageError, loadBannerImageSuccess, updateBannerImageError, updateBannerImageSuccess } from '../Actions/BannerImageAction';
 const Toast = Swal.mixin({
     toast: true,
     position: "top-end",
@@ -65,7 +64,6 @@ export function* onDeleteBannerImageStartAsync({ payload }) {
     try {
         const response = yield call(deleteBannerImageApi, payload)
         if (response.data.message === "Success") {
-            yield delay(500)
             yield put(deleteBannerImageSuccess(response.data))
             Toast.fire({
                 icon: "success",

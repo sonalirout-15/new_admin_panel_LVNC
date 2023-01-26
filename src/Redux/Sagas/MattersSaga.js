@@ -6,7 +6,6 @@ import {
     call,
     all,
     takeEvery,
-    delay
 } from "redux-saga/effects";
 import Swal from 'sweetalert2';
 import {
@@ -115,7 +114,6 @@ export function* onDeleteMettersStartAsync({ payload }) {
     try {
         const response = yield call(deleteMettersApi, payload)
         if (response.data.message === 200) {
-            yield delay(500)
             yield put(deleteMettersSuccess(response.data))
             Toast.fire({
                 icon: "success",
@@ -129,6 +127,37 @@ export function* onDeleteMettersStartAsync({ payload }) {
         }
     } catch (error) {
         yield put(deleteMettersError(error.response.data))
+        if(error.response.data.errors.title) {
+            Toast.fire({
+                icon: "error",
+                title: error.response.data.errors.title,
+            });
+        } else if(error.response.data.errors.Description){
+            Toast.fire({
+                icon: "error",
+                title: error.response.data.errors.Description,
+            });
+        } else if(error.response.data.errors.image){
+            Toast.fire({
+                icon: "error",
+                title: error.response.data.errors.image,
+            });
+        } else if (error.response.data.errors.video) {
+            Toast.fire({
+                icon: "error",
+                title: error.response.data.errors.video,
+            });
+        } else if(error.response.data.errors.audio) {
+            Toast.fire({
+                icon: "error",
+                title: error.response.data.errors.audio,
+            });
+        } else {
+            Toast.fire({
+                icon: "error",
+                title: error.response.data.errors.message
+            })
+        }
     }
 }
 
@@ -149,6 +178,37 @@ export function* onUpdateMettersStartAsync({ payload }) {
         }
     } catch (error) {
         yield put(updateMettersError(error.response))
+        if(error.response.data.errors.title) {
+            Toast.fire({
+                icon: "error",
+                title: error.response.data.errors.title,
+            });
+        } else if(error.response.data.errors.Description){
+            Toast.fire({
+                icon: "error",
+                title: error.response.data.errors.Description,
+            });
+        } else if(error.response.data.errors.image){
+            Toast.fire({
+                icon: "error",
+                title: error.response.data.errors.image,
+            });
+        } else if (error.response.data.errors.video) {
+            Toast.fire({
+                icon: "error",
+                title: error.response.data.errors.video,
+            });
+        } else if(error.response.data.errors.audio) {
+            Toast.fire({
+                icon: "error",
+                title: error.response.data.errors.audio,
+            });
+        } else {
+            Toast.fire({
+                icon: "error",
+                title: error.response.data.errors.message
+            })
+        }
     }
 }
 

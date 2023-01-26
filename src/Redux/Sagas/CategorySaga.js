@@ -6,7 +6,6 @@ import {
     fork,
     call,
     all,
-    delay,
     takeEvery
 } from "redux-saga/effects";
 import Swal from 'sweetalert2';
@@ -95,20 +94,30 @@ export function* onDeleteCategoryStartAsync({ payload }) {
     try {
         const response = yield call(deleteCategoryApi, payload)
         if (response.data.message === "Success") {
-            yield delay(500)
             yield put(deleteCategorySuccess(response.data))
-            // Toast.fire({
-            //     icon: "success",
-            //     title: response.data.message,
-            // });
-        // } else {
-        //     Toast.fire({
-        //         icon: "error",
-        //         title: response.data.message,
-        //     });
+            Toast.fire({
+                icon: "success",
+                title: response.data.message,
+            });
+        } else {
+            Toast.fire({
+                icon: "error",
+                title: response.data.message,
+            });
         }
     } catch (error) {
         yield put(deleteCategoryError(error.response))
+        if(error.response.data.errors.category_name) {
+            Toast.fire({
+                icon: "error",
+                title: error.response.data.errors.category_name,
+            });
+        } else {
+            Toast.fire({
+                icon: "error",
+                title: error.response.data.errors.message,
+            });
+        }
     }
 }
 

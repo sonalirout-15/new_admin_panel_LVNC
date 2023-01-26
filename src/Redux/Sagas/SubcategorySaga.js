@@ -6,7 +6,6 @@ import {
     call,
     all,
     takeEvery,
-    delay
 } from "redux-saga/effects";
 import Swal from 'sweetalert2';
 import {
@@ -51,7 +50,6 @@ export function* onGetSingleSubcategoryStartAsync({ payload }) {
     try {
         const response = yield call(getSingleSubcategoryApi, payload);
         if (response.data.message === "Success") {
-            console.log('RESPONSE~~~~~~~~~~~~~~>>>>', response.data.categoryData)
             yield put(getSingleSubcategorySuccess(response.data.categoryData))
         }
     } catch (error) {
@@ -93,7 +91,6 @@ export function* onDeleteSubcategoryStartAsync({ payload }) {
     try {
         const response = yield call(deleteSubcategoryApi, payload)
         if (response.data.message === "Success") {
-            yield delay(500)
             yield put(deleteSubcategorySuccess(response.data))
             Toast.fire({
                 icon: "success",
@@ -107,6 +104,17 @@ export function* onDeleteSubcategoryStartAsync({ payload }) {
         }
     } catch (error) {
         yield put(deleteSubcategoryError(error.response.data))
+        if(error.response.data.errors.subcategory_name) {
+            Toast.fire({
+                icon: "error",
+                title: error.response.data.errors.subcategory_name,
+            });
+        } else {
+            Toast.fire({
+                icon: "error",
+                title: error.response.data.errors.message,
+            });
+        }
     }
 }
 
@@ -120,17 +128,10 @@ export function* onUpdateSubcategoryStartAsync({ payload }) {
                 title: response.data.message,
             });
         } else {
-            if (payload.subcategory_name === '') {
-                Toast.fire({
-                    icon: "error",
-                    title: response.data.errors.subcategory_name,
-                });
-            } else if (payload.category_ref_id === '') {
-                Toast.fire({
-                    icon: "error",
-                    title: response.data.errors.category_ref_id,
-                });
-            }
+            Toast.fire({
+                icon: "error",
+                title: response.data.message,
+            });
         }
     } catch (error) {
         yield put(updateSubcategoryError(error.response.data))
