@@ -68,7 +68,7 @@ const AddEditBanner = () => {
       <div className="main-content">
         <section className="section">
           <div className="section-header">
-          <h4>Banner</h4>
+          <h1>Banner</h1>
           </div>
           <form onSubmit={handleSubmit}>
             <div className="section-body">
@@ -96,7 +96,7 @@ const AddEditBanner = () => {
                         fontFamily : 'bold',
                         fontSize: '15px'
                       }}>
-                       {submit && !imageName && <small className="p-invalid">Title required.</small>}
+                       {submit && !imageName && <p>Title required.</p>}
                       </label>
                       </div>
                       <div className="form-group">
@@ -109,6 +109,7 @@ const AddEditBanner = () => {
                           defaultValue={image || ""}
                           name="image"
                           onChange={handleFileSelect} />
+
                       <label style={{
                         color: "red",
                         marginLeft: "2%",
@@ -116,7 +117,7 @@ const AddEditBanner = () => {
                         fontFamily : 'bold',
                         fontSize: '15px'
                       }}>
-                       {submit && !image && <small className="p-invalid">Image required.</small>}
+                       {submit && !image && <p>Image required.</p>}
                       </label>
                       </div>
                       <button type="submit" className="btn btn-primary">{!editMode ? "Add" : "Update"}</button>{" "}

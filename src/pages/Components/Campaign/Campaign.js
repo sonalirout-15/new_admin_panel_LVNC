@@ -153,7 +153,7 @@ const Campaign = () => {
       <div className="main-content">
         <section className="section">
           <div className="section-header">
-            <h1>Campaign</h1>
+            <h1>Campaigns</h1>
           </div>
           <div className="row">
             <div className="col-lg-12 col-md-12 col-12 col-sm-25">

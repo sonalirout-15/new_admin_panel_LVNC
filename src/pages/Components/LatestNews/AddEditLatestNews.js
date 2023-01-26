@@ -94,7 +94,7 @@ const AddEditLatestNews = () => {
       <div className="main-content">
         <section className="section">
           <div className="section-header">
-            <h4>Latest News</h4>
+            <h1>Latest News</h1>
           </div>
           <form onSubmit={handleSubmit}>
             <div className="section-body">
@@ -122,7 +122,7 @@ const AddEditLatestNews = () => {
                           fontFamily : 'bold',
                           fontSize: '15px'
                         }}>
-                         {submit && !title && <small className="p-invalid">Title required.</small>}
+                         {submit && !title && <p>Title required.</p>}
                         </label>
                       </div>
                       <div className="form-group">
@@ -141,7 +141,7 @@ const AddEditLatestNews = () => {
                           fontFamily : 'bold',
                           fontSize: '15px'
                         }}>
-                          {submit && !Description && <small className="p-invalid">Description required.</small>}
+                          {submit && !Description && <p>Description required.</p>}
                         </label>
                       </div>
                       <div className="form-group">
@@ -161,7 +161,7 @@ const AddEditLatestNews = () => {
                           fontFamily : 'bold',
                           fontSize: '15px'
                         }}>
-                         {submit && !image && <small className="p-invalid">Image required.</small>}
+                         {submit && !image && <p>Image required.</p>}
                         </label>
                       </div>
                       <div className="form-group">
@@ -181,7 +181,7 @@ const AddEditLatestNews = () => {
                           fontFamily : 'bold',
                           fontSize: '15px'
                         }}>
-                          {submit && !video && <small className="p-invalid">Video required.</small>}
+                          {submit && !video && <p>Video required.</p>}
                         </label>
                       </div>
                       <div className="form-group">

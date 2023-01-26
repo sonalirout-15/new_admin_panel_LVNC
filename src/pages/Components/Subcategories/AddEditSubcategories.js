@@ -63,7 +63,7 @@ const handleSubmit = async (e) => {
          <div className="main-content">
         <section className="section">
           <div className="section-header">
-            <h4>Subcategory</h4>
+            <h1>Subcategory</h1>
           </div>
           <form onSubmit={handleSubmit}>
             <div className="section-body">
@@ -71,7 +71,7 @@ const handleSubmit = async (e) => {
                 <div className="col-18 col-md-6 col-lg-6">
                   <div className="card">
                     <div className="card-header">
-                      <center><strong>{!editMode ? "Add Subcategory" : "Update Subcategory"}</strong></center>
+                    <center><h1>{!editMode ? "Add Subcategory" : "Update Subcategory"}</h1></center>
                     </div>
                     <div className="card-body">
                       <div className="form-group">
@@ -91,7 +91,7 @@ const handleSubmit = async (e) => {
                         fontFamily : 'bold',
                         fontSize: '15px'
                       }}>
-                        {submit && !subcategory_name && <small className="p-invalid">Subcategory Name required.</small>}
+                        {submit && !subcategory_name && <p>Subcategory Name required.</p>}
                       </label>
                       </div>
                       <div className="form-group">

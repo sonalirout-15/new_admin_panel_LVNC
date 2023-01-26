@@ -876,6 +876,7 @@ select.form-control:not([size]):not([multiple]) {
   padding: 15px 25px;
   display: flex;
   align-items: center;
+  color: rgb(3, 42, 99);
 }
 
 .card .card-header .btn {

@@ -122,7 +122,7 @@ const handleDelete = (id) => {
       <div className="main-content">
       <section className="section">
         <div className="section-header">
-          <h1>Banner</h1>
+          <h1>Banners</h1>
         </div>
         <div className="row">
           <div className="col-lg-12 col-md-12 col-12 col-sm-25">

@@ -4,7 +4,7 @@ import { Redirect, Route , useLocation } from "react-router-dom";
 import Login from './pages/Pages/Auth/Login';
 import GeneralDashboard from "./pages/Dashboard/GeneralDashboard";
 import Admins from "./pages/Components/Admin/Admins";
-import AddEditAdmin from "./pages/Components/Admin/AddEditAdmin";
+import EditAdmin from './pages/Components/Admin/EditAdmin';
 import ViewAdmin from "./pages/Components/Admin/ViewAdmin";
 import Categories from "./pages/Components/Categories/Categories";
 import AddEditCategories from "./pages/Components/Categories/AddEditCategories";
@@ -56,8 +56,7 @@ function App() {
         <Route path='/signup' component={Signup}/>
         <Route path="/dashboard" component={GeneralDashboard}/>
         <Route path='/admins' component={Admins} />
-        <Route path='/addAdmin' component={AddEditAdmin} />
-        <Route path='/editAdmin/:id' component={AddEditAdmin} />
+        <Route path='/editAdmin/:id' component={EditAdmin} />
         <Route path='/viewAdmin/:id' component={ViewAdmin} />
         <Route path='/categories' component={Categories} />
         <Route path='/addCategory' component={AddEditCategories} />

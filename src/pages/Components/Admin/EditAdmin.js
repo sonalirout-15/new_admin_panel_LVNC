@@ -12,7 +12,7 @@ const initialState = {
   image: '',
 }
 
-const AddEditAdmin = () => {
+const EditAdmin = () => {
   const [formValue, setFormValue] = useState(initialState);
   const [submit , setSubmit] = useState();
   const [editMode, setEditMode] = useState(false);
@@ -75,7 +75,7 @@ const AddEditAdmin = () => {
       <div className="main-content">
         <section className="section">
           <div className="section-header">
-            <h4>Admin</h4>
+          <h1>Admins</h1>
           </div>
           <form onSubmit={handleSubmit}>
             <div className="section-body">
@@ -103,7 +103,7 @@ const AddEditAdmin = () => {
                           fontFamily : 'bold',
                           fontSize: '15px'
                         }}>
-                          {submit && !name && <small className="p-invalid">Name required.</small>}
+                          {submit && !name && <p>Name required.</p>}
                         </label>
                       </div>
                       <div className="form-group">
@@ -130,7 +130,7 @@ const AddEditAdmin = () => {
                           fontFamily : 'bold',
                           fontSize: '15px'
                         }}>
-                           {submit && !mobile && <small className="p-invalid">Mobile required.</small>}
+                           {submit && !mobile && <p>Mobile required.</p>}
                         </label>
                       </div>
                       <div className="form-group">
@@ -147,7 +147,7 @@ const AddEditAdmin = () => {
                           fontFamily : 'bold',
                           fontSize: '15px'
                         }}>
-                           {submit && !gender && <small className="p-invalid">Gender required.</small>}
+                           {submit && !gender && <p>Gender required.</p>}
                         </label>
                       </div>
                       <div className="form-group">
@@ -166,7 +166,7 @@ const AddEditAdmin = () => {
                           fontFamily : 'bold',
                           fontSize: '15px'
                         }}>
-                          {submit && !address && <small className="p-invalid">Address required.</small>}
+                          {submit && !address && <p>Address required.</p>}
                         </label>
                       </div>
                       <div className="form-group">
@@ -186,7 +186,7 @@ const AddEditAdmin = () => {
                           fontFamily : 'bold',
                           fontSize: '15px'
                         }}>
-                           {submit && !image && <small className="p-invalid">Image required.</small>}
+                           {submit && !image && <p>Image required.</p>}
                         </label>
                       </div>
                       <button type="submit" className="btn btn-primary">Update</button>{" "}
@@ -202,4 +202,4 @@ const AddEditAdmin = () => {
   )
 }
 
-export default AddEditAdmin;
+export default EditAdmin;

@@ -56,7 +56,7 @@ const AddEditCategories = () => {
       <div className="main-content">
         <section className="section">
           <div className="section-header">
-            <h4>Category</h4>
+            <h1>Category</h1>
           </div>
           <form onSubmit={handleSubmit}>
             <div className="section-body">
@@ -64,7 +64,7 @@ const AddEditCategories = () => {
                 <div className="col-10 col-md-4 col-lg-4">
                   <div className="card">
                     <div className="card-header">
-                      <center><strong>{!editMode ? "Add Category" : "Update Category"}</strong></center>
+                    <center><strong>{!editMode ? "Add Category" : "Update Category"}</strong></center>
                     </div>
                     <div className="card-body">
                       <div className="form-group">
@@ -84,7 +84,7 @@ const AddEditCategories = () => {
                         fontFamily : 'bold',
                         fontSize: '15px'
                       }}>
-                       {submit && !category_name && <small className="p-invalid">Category Name required.</small>}
+                       {submit && !category_name && <p>Category Name required.</p>}
                       </label>
                       </div>
                       <button type="submit" className="btn btn-primary">{!editMode ? "Add" : "Update"}</button>{" "}

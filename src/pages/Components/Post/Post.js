@@ -157,7 +157,7 @@ const Post = () => {
       <div className="main-content">
         <section className="section">
           <div className="section-header">
-            <h1>Post</h1>
+            <h1>Posts</h1>
           </div>
           <div className="row">
             <div className="col-lg-18 col-md-12 col-12 col-sm-26">

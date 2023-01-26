@@ -80,7 +80,7 @@ const AddEditChildSubcategory = () => {
          <div className="main-content">
         <section className="section">
           <div className="section-header">
-            <h4>Child Subcategory</h4>
+            <h1>Child Subcategory</h1>
           </div>
           <form onSubmit={handleSubmit}>
             <div className="section-body">
@@ -88,7 +88,7 @@ const AddEditChildSubcategory = () => {
                 <div className="col-30 col-md-6 col-lg-6">
                   <div className="card">
                     <div className="card-header">
-                      <center><strong>{!editMode ? "Add Child Subcategory" : "Update Child Subcategory"}</strong></center>
+                    <center><strong>{!editMode ? "Add Child Subcategory" : "Update Child Subcategory"}</strong></center>
                     </div>
                     <div className="card-body">
                       <div className="form-group">
@@ -108,7 +108,7 @@ const AddEditChildSubcategory = () => {
                         fontFamily : 'bold',
                         fontSize: '15px'
                       }}>
-                         {submit && !title && <small className="p-invalid">Title required.</small>}
+                         {submit && !title && <p>Title required.</p>}
                       </label>
                       </div>
                       <div className="form-group">
@@ -127,7 +127,7 @@ const AddEditChildSubcategory = () => {
                         fontFamily : 'bold',
                         fontSize: '15px'
                       }}>
-                         {submit && !Description && <small className="p-invalid">Description required.</small>}
+                         {submit && !Description && <p>Description required.</p>}
                       </label>
                       </div>
                       <div className="form-group">
@@ -147,7 +147,7 @@ const AddEditChildSubcategory = () => {
                         fontFamily : 'bold',
                         fontSize: '15px'
                       }}>
-                        {submit && !image && <small className="p-invalid">Image required.</small>}
+                        {submit && !image && <p>Image required.</p>}
                       </label>
                       </div>
                       <div className="form-group">

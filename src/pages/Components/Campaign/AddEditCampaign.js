@@ -77,7 +77,7 @@ const AddEditCampaign = () => {
       <div className="main-content">
         <section className="section">
           <div className="section-header">
-            <h4>Campaign</h4>
+            <h1>Campaign</h1>
           </div>
           <form onSubmit={handleSubmit}>
             <div className="section-body">
@@ -105,7 +105,7 @@ const AddEditCampaign = () => {
                         fontFamily : 'bold',
                           fontSize: '15px'
                       }}>
-                       {submit && !title && <small className="p-invalid">Title required.</small>}
+                       {submit && !title && <p>Title required.</p>}
                       </label>
                       </div>
                       <div className="form-group">
@@ -124,7 +124,7 @@ const AddEditCampaign = () => {
                         fontFamily : 'bold',
                           fontSize: '15px'
                       }}>
-                       {submit && !description && <small className="p-invalid">Description required.</small>}
+                       {submit && !description && <p>Description required.</p>}
                       </label>
                       </div>
                       <div className="form-group">
@@ -142,7 +142,7 @@ const AddEditCampaign = () => {
                         marginLeft: "2%",
                         display: "flex"
                       }}>
-                       {submit && !image && <small className="p-invalid">Image required.</small>}
+                       {submit && !image && <p>Image required.</p>}
                       </label>
                       </div>
                       <div className="form-group">
@@ -160,7 +160,7 @@ const AddEditCampaign = () => {
                         marginLeft: "2%",
                         display: "flex"
                       }}>
-                        {submit && !audio && <small className="p-invalid">Audio required.</small>}
+                        {submit && !audio && <p>Audio required.</p>}
                       </label>
                       </div>
                       <div className="form-group">
@@ -178,7 +178,7 @@ const AddEditCampaign = () => {
                         marginLeft: "2%",
                         display: "flex"
                       }}>
-                       {submit && !video && <small className="p-invalid">Video required.</small>}
+                       {submit && !video && <p>Video required.</p>}
                       </label>
                       </div>
                       <button type="submit" className="btn btn-primary">{!editMode ? "Add" : "Update"}</button>{" "}
