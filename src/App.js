@@ -52,6 +52,7 @@ function App() {
         location.pathname !== '/' && location.pathname !== '/signup' && location.pathname !== '/forgot-password' && location.pathname !== '/change-password' && location.pathname !== '/reset-password' && <SideBar />
       }
       {localStorage.getItem("ADMIN") ? (<Redirect to='/dashboard'/>) : (<Redirect to='/' />)  }
+      
         <Route path='/' exact component={Login}/>
         <Route path='/signup' component={Signup}/>
         <Route path="/dashboard" component={GeneralDashboard}/>

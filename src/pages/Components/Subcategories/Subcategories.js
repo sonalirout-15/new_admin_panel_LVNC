@@ -121,7 +121,7 @@ const Subcategories = () => {
             <h1>Subcategories</h1>
           </div>
           <div className="row">
-            <div className="col-lg-10 col-md-12 col-12 col-sm-14">
+            <div className="col-lg-14 col-md-12 col-12 col-sm-14">
               <div className="card">
                 <div className="card-header">
                   <h4>Subcategories Details</h4>
