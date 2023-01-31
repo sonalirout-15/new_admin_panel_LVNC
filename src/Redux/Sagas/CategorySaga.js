@@ -99,12 +99,7 @@ export function* onDeleteCategoryStartAsync({ payload }) {
                 icon: "success",
                 title: response.data.message,
             });
-        } else {
-            Toast.fire({
-                icon: "error",
-                title: response.data.message,
-            });
-        }
+        } 
     } catch (error) {
         yield put(deleteCategoryError(error.response))
         if(error.response.data.errors.category_name) {

@@ -9,7 +9,7 @@ import {
 } from "mdbreact";
 
 const UserDropdown = () => {
-  const userData = userDetail;
+  // const userData = userDetail;
   const history = useHistory();
 
   const handleClick = (e) => {
@@ -26,7 +26,7 @@ const UserDropdown = () => {
           <img
             style={{ height: '40px', width: '40px' }}
             alt="image"
-            src={userData.userImg}
+            src='../../../assets/img/avatar/avatar-1.png'
             className="rounded-circle mr-1"
           />
         </MDBDropdownToggle>

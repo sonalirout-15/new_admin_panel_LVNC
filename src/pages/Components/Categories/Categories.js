@@ -115,8 +115,6 @@ const Categories = () => {
   });
   }
 
-
-
   return (
     <>
       <div className="main-content">
