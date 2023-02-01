@@ -1,11 +1,12 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { Link, useHistory } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import {  useHistory } from "react-router-dom";
 import { adminChangePasswordStart } from "../../../Redux/Actions/AdminActions";
 
 const ChangePassword = () => {
     const dispatch = useDispatch();
     const history = useHistory();
+    const changePassData = useSelector((state) => state?.admin?.adminChangePassword);
     const [submit , setSubmit] = useState();
     const [data, setData] = useState({
       currentPassword:'',
@@ -32,59 +33,63 @@ const ChangePassword = () => {
           dispatch(adminChangePasswordStart(changePassData))
         }  
     };
+
+    if(changePassData?.message === 'Password change succesfully'){
+      history.push('/dashboard')
+    }
     
     return(
       <div id="app">
-      <section class="section">
-        <div class="container mt-5">
-          <div class="row">
-            <div class="col-12 col-sm-8 offset-sm-2 col-md-6 offset-md-3 col-lg-6 offset-lg-3 col-xl-4 offset-xl-4">
-              <div class="login-brand">
+      <section className="section">
+        <div className="container mt-5">
+          <div className="row">
+            <div className="col-12 col-sm-8 offset-sm-2 col-md-6 offset-md-3 col-lg-6 offset-lg-3 col-xl-4 offset-xl-4">
+              <div className="login-brand">
                 <img
                   src="../assets/img/stisla-fill.svg"
                   alt="logo"
                   width="100"
-                  class="shadow-light rounded-circle"
+                  className="shadow-light rounded-circle"
                 />
               </div>
 
-              <div class="card card-primary">
-                <div class="card-header">
+              <div className="card card-primary">
+                <div className="card-header">
                   <h4>Change Password</h4>
                 </div>
 
-                <div class="card-body">
-                  <p class="text-muted">
+                <div className="card-body">
+                  <p className="text-muted">
                      Change your password
                   </p>
                   <form method="POST" onSubmit={handleSubmit}>
 
-                    <div class="form-group">
+                    <div className="form-group">
                       <label for="password">Current Password</label>
                       <input
                         id="currentPassword"
                         type="password"
-                        class="form-control pwstrength"
+                        className="form-control pwstrength"
                         data-indicator="pwindicator"
                         name="currentPassword"
                         tabindex="2"
                         value={data.currentPassword}
                         onChange={handleChange}
                       />
-                      <div id="pwindicator" class="pwindicator">
-                        <div class="bar"></div>
-                        <div class="label"></div>
+                      <div id="pwindicator" className="pwindicator">
+                        <div className="bar"></div>
+                        <div className="label"></div>
                       </div>
                     </div>
                     <label style={{color: "red", marginLeft:'2%', display:'flex'}}>
-                    {submit && !data.currentPassword && <small className="p-invalid">Current password required.</small>}
+                    {submit && !data.currentPassword && <small classNameName="p-invalid">Current password required.</small>}
                     </label>
-                    <div class="form-group">
+                    <div className="form-group">
                       <label for="password-confirm">New Password</label>
                       <input
                         id="newPassword"
                         type="password"
-                        class="form-control"
+                        className="form-control"
                         name="newPassword"
                         tabindex="2"
                         value={data.newPassword}
@@ -92,22 +97,22 @@ const ChangePassword = () => {
                       />
                     </div>
                     <label style={{color: "red", marginLeft:'2%', display:'flex'}}>
-                    {submit && !data.newPassword && <small className="p-invalid">Confirm password required.</small>}
+                    {submit && !data.newPassword && <small classNameName="p-invalid">Confirm password required.</small>}
                     </label>
 
-                    <div class="form-group">
+                    <div className="form-group">
                       <button
                         type="submit"
-                        class="btn btn-primary btn-lg btn-block"
+                        className="btn btn-primary btn-lg btn-block"
                         tabindex="4"
                       >
-                        Reset Password
+                        Change Password
                       </button>
                     </div>
                   </form>
                 </div>
               </div>
-              <div class="simple-footer">Copyright &copy; LVNC 2022</div>
+              <div className="simple-footer">Copyright &copy; LVNC 2022</div>
             </div>
           </div>
         </div>

@@ -19,8 +19,9 @@ export const adminChangePasswordStart = (adminChangePassword) => ({
     type: types.ADMIN_CHANGE_PASSWORD_START,
     payload: adminChangePassword
 })
-export const adminChangePasswordSuccess = () => ({
-    type: types.ADMIN_CHANGE_PASSWORD_SUCCESS
+export const adminChangePasswordSuccess = (adminChangePassword) => ({
+    type: types.ADMIN_CHANGE_PASSWORD_SUCCESS,
+    payload: adminChangePassword
 })
 export const adminChangePasswordError = (error) => ({
     type: types.ADMIN_CHANGE_PASSWORD_ERROR,
@@ -31,8 +32,9 @@ export const adminResetPasswordStart = (adminResetPassword) => ({
     type: types.ADMIN_RESET_PASSWORD_START,
     payload: adminResetPassword
 })
-export const adminResetPasswordSuccess = () => ({
-    type: types.ADMIN_RESET_PASSWORD_SUCCESS
+export const adminResetPasswordSuccess = (adminResetPassword) => ({
+    type: types.ADMIN_RESET_PASSWORD_SUCCESS,
+    payload: adminResetPassword
 })
 export const adminResetPasswordError = (error) => ({
     type: types.ADMIN_RESET_PASSWORD_ERROR,
@@ -43,8 +45,9 @@ export const adminForgotPasswordStart = (adminForgotPassword) => ({
     type: types.ADMIN_FORGOT_PASSWORD_START,
     payload: adminForgotPassword
 })
-export const adminForgotPasswordSuccess = () => ({
-    type: types.ADMIN_FORGOT_PASSWORD_SUCCESS
+export const adminForgotPasswordSuccess = (adminForgotPassword) => ({
+    type: types.ADMIN_FORGOT_PASSWORD_SUCCESS,
+    payload: adminForgotPassword
 })
 export const adminForgotPasswordError = (error) => ({
     type: types.ADMIN_FORGOT_PASSWORD_ERROR,

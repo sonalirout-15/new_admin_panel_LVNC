@@ -4,6 +4,9 @@ const initialState = {
     admin: [],
     adminLogin: [],
     adminData: [],
+    adminChangePassword:[],
+    adminForgotPassword:[],
+    adminResetPassword:[],
     updateAdmin: [],
     loading: false,
     error: null
@@ -57,8 +60,18 @@ const adminReducer = (state = initialState, action) => {
             }
             
         case types.ADMIN_CHANGE_PASSWORD_SUCCESS:
+            return{
+                ...state,
+                loading: true,
+                adminChangePassword: action.payload
+            }
         case types.ADMIN_RESET_PASSWORD_SUCCESS:
         case types.ADMIN_FORGOT_PASSWORD_SUCCESS:
+            return{
+                ...state,
+                loading: true,
+                adminForgotPassword: action.payload
+            }
         case types.ADMIN_LOGOUT_SUCCESS:
         // case types.DELETE_ADMIN_SUCCESS:
             return {

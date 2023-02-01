@@ -77,6 +77,7 @@ export function* onAdminLoginStartAsync({ payload }) {
 export function* onAdminChangePasswordStartAsync({ payload }) {
     try {
         const response = yield call(adminChangePasswordApi, payload);
+        console.log('RESPONSE~~~~~~~~~~>>>', response.data)
         if (response.data.status === 200) {
             yield put(adminChangePasswordSuccess(response.data))
             Toast.fire({
@@ -91,10 +92,10 @@ export function* onAdminChangePasswordStartAsync({ payload }) {
         }
     } catch (error) {
         yield put(adminChangePasswordError(error.response))
-        Toast.fire({
-            icon: "error",
-            title: error.response.data.message,
-        });
+            Toast.fire({
+                icon: "error",
+                title: error.response.data.message,
+            });
     }
 }
 
@@ -102,7 +103,7 @@ export function* onAdminResetPasswordStartAsync({ payload }) {
     try {
         const response = yield call(adminResetPasswordApi, payload);
         if (response.data.status === 200) {
-            localStorage.setItem("ADMIN", JSON.parse(JSON.stringify(response.data.data.token)))
+            // localStorage.setItem("ADMIN", JSON.parse(JSON.stringify(response.data.data.token)))
             yield put(adminResetPasswordSuccess(response.data))
             Toast.fire({
                 icon: "success",
@@ -147,26 +148,26 @@ export function* onAdminForgotPasswordStartAsync({ payload }) {
     }
 }
 
-export function* onAdminLogoutStartAsync() {
-    try {
-        localStorage.removeItem("ADMIN")
-        const response = yield call(adminLogoutStart)
-        if (response.data.status === 200) {
-            yield put(adminLogoutSuccess(response.data))
-            Toast.fire({
-                icon: "success",
-                title: response.data.message,
-            });
-        } else {
-            Toast.fire({
-                icon: "error",
-                title: response.data.message,
-            });
-        }
-    } catch (error) {
-        yield put(adminLogoutError(error.response))
-    }
-}
+// export function* onAdminLogoutStartAsync() {
+//     try {
+//         localStorage.removeItem("ADMIN")
+//         const response = yield call(adminLogoutStart)
+//         if (response.data.status === 200) {
+//             yield put(adminLogoutSuccess(response.data))
+//             Toast.fire({
+//                 icon: "success",
+//                 title: response.data.message,
+//             });
+//         } else {
+//             Toast.fire({
+//                 icon: "error",
+//                 title: response.data.message,
+//             });
+//         }
+//     } catch (error) {
+//         yield put(adminLogoutError(error.response))
+//     }
+// }
 
 export function* onLoadAdminStartAsync() {
     try {
@@ -322,9 +323,9 @@ export function* onAdminForgotPassword() {
     yield takeLatest(types.ADMIN_FORGOT_PASSWORD_START, onAdminForgotPasswordStartAsync);
 }
 
-export function* onAdminLogout() {
-    yield takeLatest(types.ADMIN_LOGOUT_START, onAdminLogoutStartAsync);
-}
+// export function* onAdminLogout() {
+//     yield takeLatest(types.ADMIN_LOGOUT_START, onAdminLogoutStartAsync);
+// }
 
 export function* onLoadAdmin() {
     yield takeEvery(types.LOAD_ADMIN_START, onLoadAdminStartAsync)
@@ -348,7 +349,7 @@ const adminSagas = [
     fork(onAdminChangePassword),
     fork(onAdminResetPassword),
     fork(onAdminForgotPassword),
-    fork(onAdminLogout),
+    // fork(onAdminLogout),
     fork(onLoadAdmin),
     fork(onCreateAdmin),
     fork(onGetSingleAdmin),

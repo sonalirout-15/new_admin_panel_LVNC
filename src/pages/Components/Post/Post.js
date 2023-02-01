@@ -29,6 +29,7 @@ const Post = () => {
       admin_ref_id: item.admin_ref_id,
       category_ref_id: item.category_ref_id,
       subcategory_ref_id: item.subcategory_ref_id,
+      childcategory_ref_id : item.childcategory_ref_id,
       title: item.title,
       Description: item.Description,
       image:<img src={item.image} style={{ height: "60px" }}></img>,
@@ -89,6 +90,12 @@ const Post = () => {
       {
         label: 'Subcategory Ref Id',
         field: 'subcategory_ref_id',
+        sort: 'asc',
+        width: 150
+      },
+      {
+        label: 'Child Subcategory Ref Id',
+        field: 'childcategory_ref_id',
         sort: 'asc',
         width: 150
       },

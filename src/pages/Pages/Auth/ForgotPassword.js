@@ -1,11 +1,13 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router";
 import { adminForgotPasswordStart } from "../../../Redux/Actions/AdminActions";
 
 const ForgotPassword = () => {
     const dispatch = useDispatch();
-    const history = useHistory()
+    const history = useHistory();
+    const forgotPassData = useSelector((state) => state?.admin?.adminForgotPassword);
+    console.log('FORGOTPASS-DATA~~~~~~~~~~~~~>>>', forgotPassData)
     const [submit , setSubmit] = useState();
     const [data, setData] = useState({
       email:'',

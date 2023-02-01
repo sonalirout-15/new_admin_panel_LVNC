@@ -16,6 +16,7 @@ const UserDropdown = () => {
     e.preventDefault();
     localStorage.removeItem("ADMIN");
     history.push("/");
+    window.location.reload()
   };
 
   return (

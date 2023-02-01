@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const token = JSON.parse((JSON.stringify(localStorage.getItem("ADMIN"))))
+const token = JSON.parse(localStorage.getItem("ADMIN"));
 const headersParam = {
     Authorization: `Bearer ${token}`,
 };

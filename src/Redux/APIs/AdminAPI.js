@@ -1,19 +1,20 @@
 import axios from 'axios';
 
-const token = JSON.parse((JSON.stringify(localStorage.getItem("ADMIN"))));
+const token = JSON.parse(localStorage.getItem("ADMIN"));
 const headersParam = {
     "Authorization": `Bearer ${token}`
 };
+// "dsfwdsfsd
 
 export const adminLoginApi = async (admin) => await axios.post(`http://localhost:8080/api/admin/login`, admin)
 
 export const adminLogoutApi = async () => await axios.post(`http://localhost:8080/api/admin/logout`, { headers: headersParam })
 
-export const adminChangePasswordApi = async (adminPassword) => await axios.post('http://localhost:8080/api/admin/change_password', adminPassword, { headers: headersParam })
+export const adminChangePasswordApi = async (adminChangePassword) => await axios.post('http://localhost:8080/api/admin/change_password', adminChangePassword, { headers: headersParam })
 
-export const adminResetPasswordApi = async (adminPassword) => await axios.post(`http://localhost:8080/api/admin/reset_password/${token}`, adminPassword, { headers: headersParam })
+export const adminResetPasswordApi = async (adminResetPassword) => await axios.post(`http://localhost:8080/api/admin/reset_password/${token}`, adminResetPassword, { headers: headersParam })
 
-export const adminForgotPasswordApi = async (adminPassword) => await axios.post('http://localhost:8080/api/admin/forgot_password', adminPassword, { headers: headersParam })
+export const adminForgotPasswordApi = async (adminForgotPassword) => await axios.post('http://localhost:8080/api/admin/forgot_password', adminForgotPassword, { headers: headersParam })
 
 export const loadAdminApi = async () => await axios.get('http://localhost:8080/api/admin', { headers: headersParam })
 

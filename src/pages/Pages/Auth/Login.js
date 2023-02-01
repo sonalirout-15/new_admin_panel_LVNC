@@ -44,7 +44,7 @@ const Login = () =>  {
 
   if (admin?.message === 'Login successful'){
     history.push("/dashboard");
-    window.location.reload()
+    // window.location.reload()
   }
 
     return (
