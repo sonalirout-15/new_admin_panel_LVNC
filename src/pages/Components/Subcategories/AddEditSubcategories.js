@@ -51,7 +51,6 @@ const handleSubmit = async (e) => {
           history.push('/subcategories')
         } 
         else {
-          setEditMode(false);
           dispatch(updateSubcategoryStart(formValue))
           history.push('/subcategories')
         }

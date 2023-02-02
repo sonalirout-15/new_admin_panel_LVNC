@@ -57,7 +57,6 @@ const AddEditMattters = () => {
           formData.append("Description", Description);
           formData.append("video", video)
           formData.append("image", image);
-          setEditMode(false);
           dispatch(updateMettersStart(formData));
           history.push('/matters')
         }

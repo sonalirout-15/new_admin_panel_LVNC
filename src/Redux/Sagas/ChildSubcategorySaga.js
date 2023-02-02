@@ -104,15 +104,16 @@ export function* onDeleteChildSubcategoryStartAsync({ payload }) {
 export function* onUpdateChildSubcategoryStartAsync({ payload }) {
     try {
         const response = yield call(updateChildSubcategoryApi, payload)
-        if (response.data.message === 'Success') {
-            yield put(updateChildSubcategorySuccess(response.data.cateData))
+        console.log('RESPONSE~~~~~~~~~~~~>>>', response)
+        if (response.data.status === 200) {
+            yield put(updateChildSubcategorySuccess(response.data?.cateData))
             Toast.fire({
                 icon: "success",
                 title: response.data.message,
             });
         } else {
             Toast.fire({
-                icon: "error",
+                icon: "success",
                 title: response.data.message,
             });
         }

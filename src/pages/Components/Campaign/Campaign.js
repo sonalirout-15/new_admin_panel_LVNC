@@ -13,7 +13,7 @@ const Campaign = () => {
 
   useEffect(() => {
     dispatch(loadCampaningStart())
-  }, [campaningData])
+  }, [])
   
   const [data, setData] = useState(campaningData)
   useEffect(() => {
@@ -164,7 +164,7 @@ const Campaign = () => {
                     <Link to={'/addCampaign'} className="btn btn-primary">+ New </Link>
                   </div>
                 </div>
-                <div className="card-body p-0">
+                <div className="card-body p-2">
                   <div className="table-responsive">
                   <MDBDataTable
                   striped

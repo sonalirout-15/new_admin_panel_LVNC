@@ -13,7 +13,7 @@ const BannerImage = () => {
 
     useEffect(() => {
       dispatch(loadBannerImageStart())
-    }, [bannerData])
+    }, [])
 
     const [data, setData] = useState(bannerData)
     
@@ -131,7 +131,7 @@ const handleDelete = (id) => {
                   <Link to={'/addBanner'} className="btn btn-primary">+ New </Link>
                 </div>
               </div>
-              <div className="card-body p-0">
+              <div className="card-body p-2">
                 <div className="table-responsive">
                 <MDBDataTable
                   striped

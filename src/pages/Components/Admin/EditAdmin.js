@@ -23,9 +23,7 @@ const EditAdmin = () => {
 
   const admin = useSelector((state) => state?.admin?.admin?.rows);
   const adminSuccess = useSelector((state) => state?.admin?.updateAdmin);
-  console.log('MESSAGE~~~~~~~~~~~~>>>', adminSuccess)
 
- 
   useEffect(() => {
     if (id) {
       setEditMode(true);
@@ -43,14 +41,13 @@ const EditAdmin = () => {
     setFormValue({ ...formValue, [name]: value });
   };
 
-
   const handleFileSelect = (e) => {
     setFormValue({ ...formValue, [e.target.name]: e.target.files[0] });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if(name !== '' && mobile !== '' && gender !== '' &&  address !== '' && image !== ''){
+    if(name  && mobile && gender  &&  address && image){
       if(editMode){
         const formData = new FormData();
         formData.append("id", id);
@@ -60,10 +57,8 @@ const EditAdmin = () => {
         formData.append("address", address);
         formData.append("image", image);
         dispatch(updateAdminStart(formData));
-        setEditMode(false);
         setSubmit(true);
       }
-     
     }
   };
 
@@ -78,6 +73,7 @@ const EditAdmin = () => {
           <div className="section-header">
           <h1>Admins</h1>
           </div>
+          
           <form onSubmit={handleSubmit}>
             <div className="section-body">
               <div className="row">

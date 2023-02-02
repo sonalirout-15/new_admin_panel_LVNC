@@ -90,7 +90,7 @@ const ResetPassword = () => {
         };
         setTimeout(() => {
           dispatch(adminResetPasswordStart(resetPasswordPayload));
-        }, 2000);
+        }, 1000);
       }
       //  }
     };

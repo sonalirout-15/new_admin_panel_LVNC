@@ -47,7 +47,6 @@ const AddEditBanner = () => {
           formData.append("id", id);
           formData.append("imageName", imageName);
           formData.append("image", image);
-          setEditMode(false);
           dispatch(updateBannerImageStart(formData));
           history.push('/banner')
         }

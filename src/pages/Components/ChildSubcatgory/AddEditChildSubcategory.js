@@ -67,7 +67,6 @@ const AddEditChildSubcategory = () => {
           formData.append("Description", Description);
           formData.append("title", title);
           formData.append("image", image);
-          setEditMode(false);
           dispatch(updateChildSubcategoryStart(formData));
           history.push('/childSubcategory')
         }

@@ -113,13 +113,14 @@ export function* onDeleteCategoryStartAsync({ payload }) {
 export function* onUpdateCategoryStartAsync({ payload }) {
     try {
         const response = yield call(updateCategoryApi, payload)
-        if (response.data.message === "Success") {
+        if (response.data.status === 200) {
             yield put(updateCategorySuccess(response.data))
             Toast.fire({
                 icon: "success",
                 title: response.data.message
             })
-        } 
+       
+        }
     } catch (error) {
         yield put(updateCategoryError(error.response.data))
         if(error.response.data.errors.category_name) {

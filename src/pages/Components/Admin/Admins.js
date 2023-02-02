@@ -128,7 +128,7 @@ const Admins = () => {
                 <div className="card-header">
                   <h4>Admin Details</h4>
                 </div>
-                <div className="card-body p-0">
+                <div className="card-body p-2">
                   <div className="table-responsive">
                   <MDBDataTable
                   striped

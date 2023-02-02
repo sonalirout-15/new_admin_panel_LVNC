@@ -65,7 +65,6 @@ const AddEditCampaign = () => {
           formData.append("description", description);
           formData.append("video", video)
           formData.append("image", image);
-          setEditMode(false);
           dispatch(updateCampaningStart(formData));
           history.push('/campaign')
         }

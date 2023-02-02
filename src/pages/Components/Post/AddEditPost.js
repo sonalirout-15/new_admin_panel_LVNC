@@ -94,9 +94,8 @@ const AddEditPost = () => {
           formData.append("title", title);
           formData.append("description", description);
           formData.append("image", image);
-          formData.append("audio", audio)
-          formData.append("video", video)
-          setEditMode(false);
+          formData.append("audio", audio);
+          formData.append("video", video);
           dispatch(updatePostStart(formData));
           history.push('/post')
         }

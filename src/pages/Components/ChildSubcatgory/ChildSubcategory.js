@@ -138,7 +138,7 @@ const ChildSubcategory = () => {
                     <Link to={'/addChildSubcategory'} className="btn btn-primary"> + New </Link>
                   </div>
                 </div>
-                <div className="card-body p-0">
+                <div className="card-body p-2">
                   <div className="table-responsive">
                   <MDBDataTable
                   striped

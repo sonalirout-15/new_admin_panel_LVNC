@@ -72,7 +72,6 @@ const AddEditLatestNews = () => {
           formData.append("Description", Description);
           formData.append("video", video)
           formData.append("image", image);
-          setEditMode(false);
           dispatch(updateLatestNewsStart(formData));
           history.push('/latestNews')
         }

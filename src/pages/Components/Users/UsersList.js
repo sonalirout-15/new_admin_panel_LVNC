@@ -82,7 +82,7 @@ const UsersList = () => {
                                     <Link to={'/dashboard'} className="btn btn-primary"> Back </Link>
                                 </div>
                             </div>
-                            <div className="card-body p-0">
+                            <div className="card-body p-2">
                                 <div className="table-responsive">
                                     <MDBDataTable
                                         striped

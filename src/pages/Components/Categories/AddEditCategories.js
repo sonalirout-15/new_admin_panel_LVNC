@@ -19,7 +19,7 @@ const AddEditCategories = () => {
 
   const categories = useSelector((state) => state?.categoryData?.categories?.categoryData?.rows);
 
-  const message = useSelector((state) => state);
+  const message = useSelector((state) => state?.categoryData?.category);
   console.log('MESSAGE---->', message)
 
   useEffect(() => {
@@ -32,6 +32,11 @@ const AddEditCategories = () => {
       setFormValue({ ...initialState });
     }
   }, [id]);
+
+  const validateCategoryName = (category_name) => {
+    const pattern = /^.{4,25}$/
+    return pattern.test(category_name)
+};
 
   const onInputChange = (e) => {
     let { name, value } = e.target;
@@ -48,14 +53,13 @@ const AddEditCategories = () => {
           history.push('/categories')
         } 
         else {
-          setEditMode(false);
           dispatch(updateCategoryStart(formValue))
           history.push('/categories')
         }
       }
 }
 
-// if(message?.message === 'Success'){
+// if(message.status === 200){
 //   history.push('/categories')
 // }
 
@@ -71,7 +75,7 @@ const AddEditCategories = () => {
                 <div className="col-10 col-md-4 col-lg-4">
                   <div className="card">
                     <div className="card-header">
-                    <center><strong></strong></center>
+                    <center><strong>{!editMode ? "Add Category" : "Update Category"}</strong></center>
                     </div>
                     <div className="card-body">
                       <div className="form-group">
@@ -91,10 +95,10 @@ const AddEditCategories = () => {
                         fontFamily : 'bold',
                         fontSize: '15px'
                       }}>
-                       {submit && !category_name && <p>Category Name required.</p>}
+                       {submit && !category_name && <p className="p-invalid">Category Name required.</p> || submit && !validateCategoryName(category_name) && <p className="p-invalid">Catgeory Name atleast Four character</p>}
                       </label>
                       </div>
-                      <button type="submit" className="btn btn-primary">Submit</button>{" "}
+                      <button type="submit" className="btn btn-primary">{!editMode ? "Add" : "Update"}</button>{" "}
                       <Link to={'/categories'} className="btn btn-info"> Back </Link>
                     </div>
                   </div>
