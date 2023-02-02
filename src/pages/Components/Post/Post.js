@@ -31,7 +31,7 @@ const Post = () => {
       subcategory_ref_id: item.subcategory_ref_id,
       childcategory_ref_id : item.childcategory_ref_id,
       title: item.title,
-      Description: item.Description,
+      description: item.description,
       image:<img src={item.image} style={{ height: "60px" }}></img>,
       audio:<audio controls><source src={item.audio} type='audio/mp3' style={{ height: "30px" }} /></audio>,
       video:<video width="100" height="50" controls><source src={item.video} type="video/mp4"/></video>,

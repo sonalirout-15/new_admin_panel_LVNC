@@ -46,8 +46,7 @@ const handleDelete = (id) => {
         no:item.no = (
           <div>{index+1}</div>
         ),
-        title: item.title,
-        Description: item.Description,
+        imageName: item.imageName,
         image:<img src={item.image} style={{ height: "60px" }}></img>,
         video: item.video,
         status: item.status,
@@ -96,7 +95,6 @@ const handleDelete = (id) => {
           sort: 'asc',
           width: 150
         },
-      
         {
           label: 'Image',
           field: 'image',

@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { loadAdminStart } from "../../Redux/Actions/AdminActions";
 import { loadBannerImageStart } from "../../Redux/Actions/BannerImageAction";
 import { loadCampaningStart } from "../../Redux/Actions/CampaignActions";
@@ -13,6 +14,7 @@ import {  loadUserStart } from "../../Redux/Actions/UserAction";
 
 const GeneralDashboard = () => {
   const dispatch = useDispatch();
+  const history = useHistory()
 
   useEffect(() => {
     dispatch(loadAdminStart());
@@ -77,7 +79,7 @@ const GeneralDashboard = () => {
                 <div className="card-icon bg-primary">
                   <i className="far fa-user"></i>
                 </div>
-                <div className="card-wrap">
+                <div className="card-wrap" onClick={() => history.push('/admins')}>
                   <div className="card-header">
                     <h4>Total Admin</h4>
                   </div>
@@ -90,7 +92,7 @@ const GeneralDashboard = () => {
                 <div className="card-icon bg-danger">
                   <i className="fas fa-th-large"></i>
                 </div>
-                <div className="card-wrap">
+                <div className="card-wrap" onClick={() => history.push('/categories')}>
                   <div className="card-header">
                     <h4>Categories</h4>
                   </div>
@@ -103,7 +105,7 @@ const GeneralDashboard = () => {
                 <div className="card-icon bg-warning">
                   <i className="fa fa-list-alt"></i>
                 </div>
-                <div className="card-wrap">
+                <div className="card-wrap" onClick={() => history.push('/subcategories')}>
                   <div className="card-header">
                     <h4>Subcategories</h4>
                   </div>
@@ -116,7 +118,7 @@ const GeneralDashboard = () => {
                 <div className="card-icon bg-warning">
                   <i className="fa fa-list-alt"></i>
                 </div>
-                <div className="card-wrap">
+                <div className="card-wrap" onClick={() => history.push('/childSubcategory')}>
                   <div className="card-header">
                     <h4>Child Subcategories</h4>
                   </div>
@@ -129,7 +131,7 @@ const GeneralDashboard = () => {
                 <div className="card-icon bg-info">
                   <i className="fas fa-newspaper"></i>
                 </div>
-                <div className="card-wrap">
+                <div className="card-wrap" onClick={() => history.push('/matters')}>
                   <div className="card-header">
                     <h4>Matters</h4>
                   </div>
@@ -142,7 +144,7 @@ const GeneralDashboard = () => {
                 <div className="card-icon bg-dark">
                   <i className="fas fa-print"></i>
                 </div>
-                <div className="card-wrap">
+                <div className="card-wrap" onClick={() => history.push('/post')}>
                   <div className="card-header">
                     <h4>Post</h4>
                   </div>
@@ -155,7 +157,7 @@ const GeneralDashboard = () => {
                 <div className="card-icon bg-secondary">
                   <i className="fas fa-poll"></i>
                 </div>
-                <div className="card-wrap">
+                <div className="card-wrap" onClick={() => history.push('/campaign')}>
                   <div className="card-header">
                     <h4>Campaning</h4>
                   </div>
@@ -168,7 +170,7 @@ const GeneralDashboard = () => {
                 <div className="card-icon bg-light">
                   <i className="fa fa-newspaper"></i>
                 </div>
-                <div className="card-wrap">
+                <div className="card-wrap" onClick={() => history.push('/latestNews')}>
                   <div className="card-header">
                     <h4>Latest News</h4>
                   </div>
@@ -185,7 +187,7 @@ const GeneralDashboard = () => {
                   <div className="card-header">
                     <h4>Total Users</h4>
                   </div>
-                  <div className="card-body">{usersData}</div>
+                  <div className="card-body" onClick={() => history.push('/userList')}>{usersData}</div>
                 </div>
               </div>
             </div>

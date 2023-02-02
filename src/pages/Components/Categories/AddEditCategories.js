@@ -19,6 +19,9 @@ const AddEditCategories = () => {
 
   const categories = useSelector((state) => state?.categoryData?.categories?.categoryData?.rows);
 
+  const message = useSelector((state) => state);
+  console.log('MESSAGE---->', message)
+
   useEffect(() => {
     if (id) {
       setEditMode(true);
@@ -52,6 +55,10 @@ const AddEditCategories = () => {
       }
 }
 
+// if(message?.message === 'Success'){
+//   history.push('/categories')
+// }
+
   return (
       <div className="main-content">
         <section className="section">
@@ -64,7 +71,7 @@ const AddEditCategories = () => {
                 <div className="col-10 col-md-4 col-lg-4">
                   <div className="card">
                     <div className="card-header">
-                    <center><strong>{!editMode ? "Add Category" : "Update Category"}</strong></center>
+                    <center><strong></strong></center>
                     </div>
                     <div className="card-body">
                       <div className="form-group">
@@ -87,7 +94,7 @@ const AddEditCategories = () => {
                        {submit && !category_name && <p>Category Name required.</p>}
                       </label>
                       </div>
-                      <button type="submit" className="btn btn-primary">{!editMode ? "Add" : "Update"}</button>{" "}
+                      <button type="submit" className="btn btn-primary">Submit</button>{" "}
                       <Link to={'/categories'} className="btn btn-info"> Back </Link>
                     </div>
                   </div>

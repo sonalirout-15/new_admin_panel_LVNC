@@ -66,6 +66,11 @@ const adminReducer = (state = initialState, action) => {
                 adminChangePassword: action.payload
             }
         case types.ADMIN_RESET_PASSWORD_SUCCESS:
+            return{
+                ...state,
+                loading: true,
+                adminResetPassword: action.payload
+            }
         case types.ADMIN_FORGOT_PASSWORD_SUCCESS:
             return{
                 ...state,

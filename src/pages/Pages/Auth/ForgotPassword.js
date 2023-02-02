@@ -1,42 +1,75 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router";
 import { adminForgotPasswordStart } from "../../../Redux/Actions/AdminActions";
 
+const emailRegx = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
+
 const ForgotPassword = () => {
     const dispatch = useDispatch();
     const history = useHistory();
-    const forgotPassData = useSelector((state) => state?.admin?.adminForgotPassword);
-    console.log('FORGOTPASS-DATA~~~~~~~~~~~~~>>>', forgotPassData)
-    const [submit , setSubmit] = useState();
-    const [data, setData] = useState({
-      email:'',
-    })
+    const data = useSelector((state) => state?.admin?.adminForgotPassword);
+    console.log('FORGOTPASS-DATA~~~~~~~~~~~~~>>>', data)
+    const [submit, setsubmit] = useState(false)
+    const [formInputes, setformInputes] = useState({
+      email: "",
+  })
 
-  const validateEmail = (email) => {
-    const re =/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    return re.test(String(email).toLowerCase());
-  };
-
+  const [ErrorInputes, setErrorInputes] = useState({ ...formInputes })
   const handleChange = (e) => {
-    const value = e.target.value;
-    setData({
-      ...data,
-      [e.target.name] : value,
-    })
+      const { name, value } = e.target
+      setformInputes({ ...formInputes, [name]: value })
+      switch (name) {
+          case "email":
+              if (!value) {
+                  ErrorInputes.email = value.length > 0 ? "" : "Enter your email"
+              }
+              else {
+                  ErrorInputes.email = emailRegx.test(value) === false && "Enter your valid email"
+              }
+              break;
+          default:
+              break;
+      }
+      setErrorInputes(ErrorInputes)
   }
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        setSubmit(true);
-        setData(data)
-        if(data.email !== '') {
-          var forgotPassData = {
-            email: data.email,
-          }
-          dispatch(adminForgotPasswordStart(forgotPassData))
-        }  
-    };
+  function validate(value) {
+    if (!formInputes.email) {
+        ErrorInputes.email = "Enter email"
+    }
+    return ErrorInputes
+}
+useEffect(() => {
+  if (data.status === 200) {
+      setformInputes({
+      email: "",
+    })
+  }
+}, [data])
+
+useEffect(() => {
+  if (Object.keys(ErrorInputes).length === 0 && Object.keys(formInputes).length !== 0) {
+      console.log(ErrorInputes, "ErrorInputes")
+  }
+}, [])
+
+const handleSubmit = (e) => {
+  e.preventDefault()
+  setsubmit(true)
+  setErrorInputes(validate(formInputes));
+  if (formInputes.email !== "") {
+     if ( ErrorInputes.email.length == undefined) {
+      var ForgotPasswordPayload={
+          email:formInputes.email,
+      }
+      setTimeout(() => {
+          dispatch(adminForgotPasswordStart(ForgotPasswordPayload));
+        }, 2000); 
+     }
+   }
+}
+
 
     return(
         <div id="app">
@@ -73,7 +106,7 @@ const ForgotPassword = () => {
                         />
                       </div>
                       <label style={{color: "red", marginLeft:'2%', display:'flex'}}>
-                      {submit && !data.email && <small className="p-invalid">Email required.</small> || submit && !validateEmail(data.email) && <small className="p-invalid">Please Enter Valid Email!</small>}
+                      <span className='cstm_error'>{ErrorInputes.email}</span>
                       </label>
                       <div class="form-group">
                         <button

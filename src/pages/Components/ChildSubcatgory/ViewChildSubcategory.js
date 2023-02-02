@@ -9,7 +9,8 @@ const ViewChildSubcategory = () => {
   const dispatch = useDispatch()
   const { id } = useParams()
 
-  const singleData = useSelector((state) => state?.childSubcatgory?.childSubcategoryData)
+  const singleData = useSelector((state) => state?.childSubcatgory?.childSubcategoryData);
+  console.log('SINGLE-DATA~~~~~~~~~~~~~>>>', singleData)
 
   useEffect(() => {
     dispatch(getSingleChildSubcategoryStart(id))
@@ -34,31 +35,31 @@ const ViewChildSubcategory = () => {
                       <table className="table table-bordered table-md">
                         <tr>
                           <td><div><label htmlFor="id" style={{ fontWeight: 'bold' }}>Child Subcategory Id : </label></div></td>
-                          <td><div><label>{singleData[0]?.id}</label></div></td>
+                          <td><div><label>{singleData?.id}</label></div></td>
                         </tr>
                         <tr>
                           <td><div><label htmlFor="id" style={{ fontWeight: 'bold' }}>Subcategory Ref Id : </label></div></td>
-                          <td><div><label>{singleData[0]?.Subcategory_ref_id}</label></div></td>
+                          <td><div><label>{singleData?.Subcategory_ref_id}</label></div></td>
                         </tr>
 
                         <tr>
                           <td><div><label htmlFor="name" style={{ fontWeight: 'bold' }}>Title : </label></div></td>
-                          <td><div><label>{singleData[0]?.title}</label></div></td>
+                          <td><div><label>{singleData?.title}</label></div></td>
                         </tr>
                         
                         <tr>
                           <td><div><label htmlFor="Description" style={{ fontWeight: 'bold' }}>Description : </label></div></td>
-                          <td><div><label>{singleData[0]?.Description}</label></div></td>
+                          <td><div><label>{singleData?.Description}</label></div></td>
                         </tr>
 
                         <tr>
                           <td><div><label htmlFor="image" style={{ fontWeight: 'bold' }}>Image : </label></div></td>
-                          <td><div><label><img src={singleData[0]?.image} style={{ height: "60px" }}></img></label></div></td>
+                          <td><div><label><img src={singleData?.image} style={{ height: "60px" }}></img></label></div></td>
                         </tr>
 
                         <tr>
                           <td><div><label htmlFor="status" style={{ fontWeight: 'bold' }}>Status : </label></div></td>
-                          <td><div ><label>{ singleData[0]?.status === 0 ? (<div className="badge badge-danger">Inactive</div>) : (<div className="badge badge-success">Active</div>)}</label></div></td>
+                          <td><div ><label>{ singleData?.status === 0 ? (<div className="badge badge-danger">Inactive</div>) : (<div className="badge badge-success">Active</div>)}</label></div></td>
                         </tr>
                       </table>
                     </div>

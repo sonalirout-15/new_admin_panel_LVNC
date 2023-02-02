@@ -27,7 +27,7 @@ const Campaign = () => {
         <div>{index+1}</div>
       ),
       title: item.title,
-      Description: item.Description,
+      description: item.description,
       image:<img src={item.image} style={{ height: "60px" }}></img>,
       audio:<audio controls><source src={item.audio} type='audio/mp3' style={{ height: "30px" }} /></audio>,
       video:<video width="100" height="50" controls><source src={item.video} type="video/mp4"/></video>,

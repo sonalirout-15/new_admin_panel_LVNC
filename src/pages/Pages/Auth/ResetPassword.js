@@ -1,35 +1,103 @@
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { adminResetPasswordStart } from "../../../Redux/Actions/AdminActions";
+
+var passwordregx = /^(?=.*[a-z])(?!.* )(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])/;
 
 const ResetPassword = () => {
     const dispatch = useDispatch();
     const history = useState();
-    const [submit , setSubmit] = useState();
-    const [data, setData] = useState({
-      newPassword:'',
-      confirmPassword: ''
-    })
+    const data = useSelector((state) => state?.admin?.adminResetPassword);
+    console.log('DATA!!!~~~~~>>>>', data)
+    const [submit, setsubmit] = useState(false);
+    const [ResetPasswordInputes, setResetPasswordInputes] = useState({
+      newPassword: "",
+      confirmPassword: "",
+    });
+    const [ErrorResetPasswordInputes, setErrorResetPasswordInputes] = useState({
+      ...ResetPasswordInputes,
+    });
 
     const handleChange = (e) => {
-      const value = e.target.value;
-      setData({
-        ...data,
-        [e.target.name] : value,
-      })
+      const { name, value } = e.target;
+  
+      setResetPasswordInputes({ ...ResetPasswordInputes, [name]: value });
+  
+      switch (name) {
+        case "newPassword":
+          if (!value) {
+            ErrorResetPasswordInputes.newPassword = "Please enter your Password";
+          }
+          else if (value.length < 4) {
+            ErrorResetPasswordInputes.newPassword = "Password length must more than 4 character";
+          }
+          else if (value.length > 16) {
+            ErrorResetPasswordInputes.newPassword = "Password length must be less than 16 characters";
+          }
+          else {
+            ErrorResetPasswordInputes.newPassword = passwordregx.test(value) === false && "Enter valid current Password"
+          }
+          break;
+          case "confirmPassword":
+            if (!value) {
+              ErrorResetPasswordInputes.confirmPassword = "Please enter your Password";
+            }
+            else if (value.length < 4) {
+              ErrorResetPasswordInputes.confirmPassword = "Password length must more than 4 character";
+            }
+            else if (value.length > 16) {
+              ErrorResetPasswordInputes.confirmPassword = "Password length must be less than 16 characters";
+            }
+            else {
+              ErrorResetPasswordInputes.confirmPassword = passwordregx.test(value) === false && "Enter valid confirm Password"
+            }
+            break;
+        default:
+          break;
+      }
+      setErrorResetPasswordInputes(ErrorResetPasswordInputes);
+    };
+
+    function validate(value) {
+      if (!ResetPasswordInputes.newPassword) {
+        ErrorResetPasswordInputes.newPassword = "Enter new Password";
+      }
+      if (!ResetPasswordInputes.confirmPassword) {
+        ErrorResetPasswordInputes.confirmPassword = "Enter confirm Password";
+      }
+      return ErrorResetPasswordInputes;
     }
+    useEffect(() => {
+      if (
+        Object.keys(ErrorResetPasswordInputes).length === 0 &&
+        Object.keys(ResetPasswordInputes).length !== 0
+      ) {
+      }
+    }, []);
     const handleSubmit = (e) => {
       e.preventDefault();
-      setSubmit(true);
-      setData(data)
-      if(data.newPassword !== '' && data.confirmPassword !== '') {
-        var resetPassData = {
-          newPassword: data.newPassword,
-          confirmPassword: data.confirmPassword
-        }
-        dispatch(adminResetPasswordStart(resetPassData))
-      }  
-  };
+      setsubmit(true);
+      setErrorResetPasswordInputes(validate(ResetPasswordInputes));
+  
+      if (
+        ResetPasswordInputes.newPassword !== "" &&
+        ResetPasswordInputes.confirmPassword !== ""
+      ) {
+        //  if ( ErrorResetPasswordInputes.newPassword.length == undefined) {
+        var resetPasswordPayload = {
+          newPassword: ResetPasswordInputes.newPassword,
+          confirmPassword: ResetPasswordInputes.confirmPassword,
+        };
+        setTimeout(() => {
+          dispatch(adminResetPasswordStart(resetPasswordPayload));
+        }, 2000);
+      }
+      //  }
+    };
+
+    if (data.status === 200) {
+      history.push("/");
+    }
 
     return(
         <div id="app">
@@ -75,7 +143,9 @@ const ResetPassword = () => {
                         </div>
                       </div>
                       <label style={{color: "red", marginLeft:'2%', display:'flex'}}>
-                      {submit && !data.newPassword && <small className="p-invalid">New password required.</small>}
+                      <span className="cstm_error">
+                      {ErrorResetPasswordInputes.newPassword}
+                    </span>
                       </label>
                       <div class="form-group">
                         <label for="password-confirm">Confirm Password</label>
@@ -90,7 +160,9 @@ const ResetPassword = () => {
                         />
                       </div>
                       <label style={{color: "red", marginLeft:'2%', display:'flex'}}>
-                      {submit && !data.confirmPassword && <small className="p-invalid">Confirm password required.</small>}
+                      <span className="cstm_error">
+                      {ErrorResetPasswordInputes.confirmPassword}
+                    </span>
                       </label>
 
                       <div class="form-group">

@@ -5,6 +5,8 @@ const headersParam = {
     "Authorization": `Bearer ${token}`
 };
 // "dsfwdsfsd
+let params = (new URL(document.location)).searchParams;
+let name = params.get("token");
 
 export const adminLoginApi = async (admin) => await axios.post(`http://localhost:8080/api/admin/login`, admin)
 
@@ -12,7 +14,7 @@ export const adminLogoutApi = async () => await axios.post(`http://localhost:808
 
 export const adminChangePasswordApi = async (adminChangePassword) => await axios.post('http://localhost:8080/api/admin/change_password', adminChangePassword, { headers: headersParam })
 
-export const adminResetPasswordApi = async (adminResetPassword) => await axios.post(`http://localhost:8080/api/admin/reset_password/${token}`, adminResetPassword, { headers: headersParam })
+export const adminResetPasswordApi = async (adminResetPassword) => await axios.post(`http://localhost:8080/api/admin/reset_password/${name}`, adminResetPassword, { headers: headersParam })
 
 export const adminForgotPasswordApi = async (adminForgotPassword) => await axios.post('http://localhost:8080/api/admin/forgot_password', adminForgotPassword, { headers: headersParam })
 

@@ -13,7 +13,7 @@ const initialState = {
   subcategory_ref_id: '',
   childcategory_ref_id: '',
   title: '',
-  Description: '',
+  description: '',
   image: '',
   audio: '',
   video: '',
@@ -24,7 +24,7 @@ const AddEditPost = () => {
   const [editMode, setEditMode] = useState(false);
   const [submit , setSubmit] = useState();
   const history = useHistory();
-  var { admin_ref_id, category_ref_id, subcategory_ref_id, childcategory_ref_id , title, Description, image, audio, video } = formValue;
+  var { admin_ref_id, category_ref_id, subcategory_ref_id, childcategory_ref_id , title, description, image, audio, video } = formValue;
   const dispatch = useDispatch();
   var { id } = useParams();
 
@@ -69,7 +69,7 @@ const AddEditPost = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setSubmit(true);
-      if( title && Description && image && video) {
+      if( title && description && image && video) {
         if(!editMode) {
           const formData = new FormData();
           formData.append("admin_ref_id", admin_ref_id);
@@ -77,7 +77,7 @@ const AddEditPost = () => {
           formData.append("subcategory_ref_id", subcategory_ref_id);
           formData.append("childcategory_ref_id", childcategory_ref_id)
           formData.append("title", title);
-          formData.append("Description", Description);
+          formData.append("description", description);
           formData.append("image", image);
           formData.append("audio", audio)
           formData.append("video", video)
@@ -92,7 +92,7 @@ const AddEditPost = () => {
           formData.append("subcategory_ref_id", subcategory_ref_id);
           formData.append("childcategory_ref_id", childcategory_ref_id)
           formData.append("title", title);
-          formData.append("Description", Description);
+          formData.append("description", description);
           formData.append("image", image);
           formData.append("audio", audio)
           formData.append("video", video)
@@ -145,9 +145,9 @@ const AddEditPost = () => {
                         <input
                           type="text"
                           className="form-control"
-                          id="Description"
-                          value={Description || ""}
-                          name="Description"
+                          id="description"
+                          value={description || ""}
+                          name="description"
                           onChange={onInputChange} />
                       <label style={{
                         color: "red",
@@ -156,7 +156,7 @@ const AddEditPost = () => {
                         fontFamily : 'bold',
                         fontSize: '15px'
                       }}>
-                       {submit && !Description && <p>Description required.</p>}
+                       {submit && !description && <p>Description required.</p>}
                       </label>
                       </div>
                       <div className="form-group">

@@ -102,17 +102,11 @@ export function* onDeleteCategoryStartAsync({ payload }) {
         } 
     } catch (error) {
         yield put(deleteCategoryError(error.response))
-        if(error.response.data.errors.category_name) {
-            Toast.fire({
-                icon: "error",
-                title: error.response.data.errors.category_name,
-            });
-        } else {
             Toast.fire({
                 icon: "error",
                 title: error.response.data.errors.message,
             });
-        }
+       
     }
 }
 
@@ -125,12 +119,7 @@ export function* onUpdateCategoryStartAsync({ payload }) {
                 icon: "success",
                 title: response.data.message
             })
-        } else {
-            Toast.fire({
-                icon: "error",
-                title: response.data.errors.message,
-            });
-        }
+        } 
     } catch (error) {
         yield put(updateCategoryError(error.response.data))
         if(error.response.data.errors.category_name) {

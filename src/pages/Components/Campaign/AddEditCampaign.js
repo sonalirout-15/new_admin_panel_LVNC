@@ -51,7 +51,7 @@ const AddEditCampaign = () => {
         if(!editMode) {
           const formData = new FormData();
           formData.append("title", title);
-          formData.append("Description", description);
+          formData.append("description", description);
           formData.append("image", image);
           formData.append("audio", audio)
           formData.append("video", video)
@@ -62,7 +62,7 @@ const AddEditCampaign = () => {
           const formData = new FormData();
           formData.append("id", id);
           formData.append("title", title);
-          formData.append("Description", description);
+          formData.append("description", description);
           formData.append("video", video)
           formData.append("image", image);
           setEditMode(false);

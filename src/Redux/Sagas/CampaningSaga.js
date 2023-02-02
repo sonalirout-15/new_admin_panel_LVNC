@@ -120,45 +120,13 @@ export function* onDeleteCampaningStartAsync({ payload }) {
                 icon: "success",
                 title: response.data.message
             })
-        } else {
-            Toast.fire({
-                icon: "error",
-                title: response.data.message
-            })
         }
     } catch (error) {
         yield put(deleteCampaningError(error.response.data))
-        if(error.response.data.errors.title) {
-            Toast.fire({
-                icon: "error",
-                title: error.response.data.errors.title,
-            });
-        } else if(error.response.data.errors.description){
-            Toast.fire({
-                icon: "error",
-                title: error.response.data.errors.description,
-            });
-        } else if(error.response.data.errors.image) {
-            Toast.fire({
-                icon: "error",
-                title: error.response.data.errors.image,
-            });
-        } else if(error.response.data.errors.audio){
-            Toast.fire({
-                icon: "error",
-                title: error.response.data.errors.audio,
-            });
-        } else if(error.response.data.errors.video){
-            Toast.fire({
-                icon: "error",
-                title: error.response.data.errors.video,
-            });
-        } else {
             Toast.fire({
                 icon: "error",
                 title: error.response.data.errors.message,
             });
-        }
     }
 }
 

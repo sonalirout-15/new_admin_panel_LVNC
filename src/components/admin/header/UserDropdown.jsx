@@ -1,6 +1,5 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
-import { userDetail } from "./Data";
 import {
   MDBDropdown,
   MDBDropdownToggle,
@@ -9,7 +8,6 @@ import {
 } from "mdbreact";
 
 const UserDropdown = () => {
-  // const userData = userDetail;
   const history = useHistory();
 
   const handleClick = (e) => {
@@ -21,7 +19,7 @@ const UserDropdown = () => {
 
   return (
     <>
-
+  <div className='userDropdown'>
       <MDBDropdown>
         <MDBDropdownToggle nav caret>
           <img
@@ -37,6 +35,7 @@ const UserDropdown = () => {
           <MDBDropdownItem onClick={handleClick}>Logout</MDBDropdownItem>
         </MDBDropdownMenu>
       </MDBDropdown>
+      </div>
     </>
   );
 };

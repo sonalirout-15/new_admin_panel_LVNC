@@ -5,7 +5,6 @@ import { Link, useHistory } from "react-router-dom";
 import { deleteCategoryStart, loadCategoryStart } from "../../../Redux/Actions/CategoryAction";
 import swal from "sweetalert";
 
-
 const Categories = () => {
   const dispatch = useDispatch()
   const history = useHistory()

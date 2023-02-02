@@ -69,7 +69,7 @@ const AddEditChildSubcategory = () => {
           formData.append("image", image);
           setEditMode(false);
           dispatch(updateChildSubcategoryStart(formData));
-          // history.push('/childSubcategory')
+          history.push('/childSubcategory')
         }
       }
 }

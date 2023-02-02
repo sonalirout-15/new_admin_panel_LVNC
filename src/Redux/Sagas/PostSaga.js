@@ -133,60 +133,13 @@ function* onDeletePostStartAsync({ payload }) {
                 icon: "success",
                 title: response.data.message
             })
-        } else {
-            Toast.fire({
-                icon: "error",
-                title: response.data.message
-            })
         }
     } catch (error) {
         yield put(deletePostError(error.response.data))
-        if(error.response.data.errors.title) {
-            Toast.fire({
-                icon: "error",
-                title: error.response.data.errors.title,
-            });
-        } else if(error.response.data.errors.Description){
-            Toast.fire({
-                icon: "error",
-                title: error.response.data.errors.Description,
-            });
-        } else if(error.response.data.errors.image){
-            Toast.fire({
-                icon: "error",
-                title: error.response.data.errors.image,
-            });
-        } else if (error.response.data.errors.video) {
-            Toast.fire({
-                icon: "error",
-                title: error.response.data.errors.video,
-            });
-        } else if(error.response.data.errors.audio) {
-            Toast.fire({
-                icon: "error",
-                title: error.response.data.errors.audio,
-            });
-        } else if(error.response.data.errors.admin_ref_id){
-            Toast.fire({
-                icon: "error",
-                title: error.response.data.errors.admin_ref_id
-            })
-        } else if(error.response.data.errors.category_ref_id){
-            Toast.fire({
-                icon: "error",
-                title: error.response.data.errors.category_ref_id
-            })
-        } else if(error.response.data.errors.subcategory_ref_id){
-            Toast.fire({
-                icon: "error",
-                title: error.response.data.errors.subcategory_ref_id
-            })
-        } else {
             Toast.fire({
                 icon: "error",
                 title: error.response.data.errors.message
             })
-        }
     }
 }
 
@@ -205,6 +158,7 @@ function* onUpdatePostStartAsync({ payload }) {
                 title: response.data.message
             })
         }
+        
     } catch (error) {
         yield put(updatePostError(error.response))
         if(error.response.data.errors.title) {

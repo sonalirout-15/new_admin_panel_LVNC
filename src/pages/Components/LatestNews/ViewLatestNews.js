@@ -53,7 +53,7 @@ const ViewLatestNews = () => {
 
                         <tr>
                           <td><div><label htmlFor="video" style={{ fontWeight: 'bold' }}>Video : </label></div></td>
-                          <td><div><label><video src={singleData?.video} type="video/mp4" style={{ height: "50px" }}></video></label></div></td>
+                          <td><div><label><video width="200" height="100" controls><source src={singleData?.video} type="video/mp4"/></video></label></div></td>
                         </tr>
 
                         <tr>

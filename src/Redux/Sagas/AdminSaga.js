@@ -84,12 +84,7 @@ export function* onAdminChangePasswordStartAsync({ payload }) {
                 icon: "success",
                 title: response.data.message,
             });
-        } else {
-            Toast.fire({
-                icon: "error",
-                title: response.data.message,
-            });
-        }
+        } 
     } catch (error) {
         yield put(adminChangePasswordError(error.response))
             Toast.fire({
@@ -109,18 +104,21 @@ export function* onAdminResetPasswordStartAsync({ payload }) {
                 icon: "success",
                 title: response.data.message,
             });
+        } 
+    } catch (error) {
+        yield put(adminResetPasswordError(error.response))
+        if (error.response.data.errors.confirmPassword) {
+            Toast.fire({
+                icon: "error",
+                title: error.response.data.errors.confirmPassword,
+            });
         } else {
             Toast.fire({
                 icon: "error",
-                title: response.data.message,
+                title: error.response.data.errors.newPassword,
             });
         }
-    } catch (error) {
-        yield put(adminResetPasswordError(error.response))
-        Toast.fire({
-            icon: "error",
-            title: error.response.data.message,
-        });
+      
     }
 }
 
@@ -131,11 +129,6 @@ export function* onAdminForgotPasswordStartAsync({ payload }) {
             yield put(adminForgotPasswordSuccess(response.data))
             Toast.fire({
                 icon: "success",
-                title: response.data.message,
-            });
-        } else {
-            Toast.fire({
-                icon: "error",
                 title: response.data.message,
             });
         }
@@ -272,8 +265,8 @@ export function* onUpdateAdminStartAsync({ payload }) {
         } else {
             Toast.fire({
                 icon: "error",
-                title: response.data.errors.message,
-            });
+                title: response.data.message
+            })
         }
     } catch (error) {
         yield put(updateAdminError(error.response))

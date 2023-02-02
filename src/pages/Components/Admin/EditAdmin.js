@@ -23,6 +23,7 @@ const EditAdmin = () => {
 
   const admin = useSelector((state) => state?.admin?.admin?.rows);
   const adminSuccess = useSelector((state) => state?.admin?.updateAdmin);
+  console.log('MESSAGE~~~~~~~~~~~~>>>', adminSuccess)
 
  
   useEffect(() => {
@@ -66,7 +67,7 @@ const EditAdmin = () => {
     }
   };
 
-  if(adminSuccess?.message === "Admin updated succesfully..."){
+  if(adminSuccess?.status === 200){
     history.push('/admins')
   }
 

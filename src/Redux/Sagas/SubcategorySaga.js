@@ -96,25 +96,13 @@ export function* onDeleteSubcategoryStartAsync({ payload }) {
                 icon: "success",
                 title: response.data.message,
             });
-        } else {
-            Toast.fire({
-                icon: "error",
-                title: response.data.message,
-            });
         }
     } catch (error) {
         yield put(deleteSubcategoryError(error.response.data))
-        if(error.response.data.errors.subcategory_name) {
-            Toast.fire({
-                icon: "error",
-                title: error.response.data.errors.subcategory_name,
-            });
-        } else {
             Toast.fire({
                 icon: "error",
                 title: error.response.data.errors.message,
             });
-        }
     }
 }
 

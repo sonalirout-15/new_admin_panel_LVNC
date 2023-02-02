@@ -69,11 +69,6 @@ export function* onDeleteBannerImageStartAsync({ payload }) {
                 icon: "success",
                 title: response.data.message
             })
-        } else {
-            Toast.fire({
-                icon: "error",
-                title: response.data.message
-            })
         }
     } catch (error) {
         yield put(deleteBannerImageError(error.response))
