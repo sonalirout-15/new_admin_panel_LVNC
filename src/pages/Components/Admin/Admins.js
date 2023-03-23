@@ -22,7 +22,7 @@ const Admins = () => {
   const adminData = []
   data && data.map((item , index) => {
     adminData.push({
-      no:item.no = (
+      no:item.no =  (
         <div>{index+1}</div>
       ),
       name: item.name,
