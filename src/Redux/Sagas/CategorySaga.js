@@ -93,9 +93,7 @@ export function* onCreateCategoryStartAsync({ payload }) {
 export function* onDeleteCategoryStartAsync({ payload }) {
     try {
         const response = yield call(deleteCategoryApi, payload)
-        console.log('PAYLOAD~~~~>>>', response)
         if (response.data.message === "Success") {
-            console.log('RESPONSE~~~~>>>', response)
             yield put(deleteCategorySuccess(response.data))
             Toast.fire({
                 icon: "success",

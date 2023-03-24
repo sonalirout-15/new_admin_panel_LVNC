@@ -8,8 +8,7 @@ const ViewCategories = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
   const singleData = useSelector((state) => state);
-  console.log('SingleData~~~~~~~~~>>>', singleData)
-
+  
   useEffect(() => {
     dispatch(getSingleCategoryStart(id))
   }, [])

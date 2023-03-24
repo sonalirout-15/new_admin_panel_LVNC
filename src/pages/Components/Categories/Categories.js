@@ -23,7 +23,6 @@ const Categories = () => {
   
   const categoryData = []
   data && data.map((item , index) => {
-    console.log('ITEM~~~~>>', item)
     categoryData.push({
       no:item.no = (
         <div>{index+1}</div>
@@ -66,24 +65,24 @@ const Categories = () => {
     console.log('ID~~~>>', id)
     dispatch(deleteCategoryStart(id))
     console.log('ID~~~>>', id)
-  //   console.log('ID~~~>>', item)
-  //   swal({
-  //     title: "Are you sure?",
-  //     text: "Once deleted, you will not be able to recover this data!",
-  //     icon: "warning",
-  //     buttons: true,
-  //     dangerMode: true,
-  // }).then((willDelete) => {
-  //     if (willDelete) {
-  //         dispatch(deleteCategoryStart(item?.id))
-  //         swal(" Category deleted successfully!", {
-  //             icon: "success",
-  //         });
+    console.log('ID~~~>>', item)
+    swal({
+      title: "Are you sure?",
+      text: "Once deleted, you will not be able to recover this data!",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+  }).then((willDelete) => {
+      if (willDelete) {
+          dispatch(deleteCategoryStart(item?.id))
+          swal(" Category deleted successfully!", {
+              icon: "success",
+          });
          
-  //     } else {
-  //         swal("Your data is safe!");
-  //     }
-  // });
+      } else {
+          swal("Your data is safe!");
+      }
+  });
   }
 
   const datas = {
