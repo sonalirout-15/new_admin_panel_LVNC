@@ -25,9 +25,6 @@ import {
     adminForgotPasswordSuccess,
     adminLoginError,
     adminLoginSuccess,
-    adminLogoutError,
-    adminLogoutStart,
-    adminLogoutSuccess,
     adminResetPasswordError,
     adminResetPasswordSuccess,
     createAdminError,
@@ -141,26 +138,6 @@ export function* onAdminForgotPasswordStartAsync({ payload }) {
     }
 }
 
-// export function* onAdminLogoutStartAsync() {
-//     try {
-//         localStorage.removeItem("ADMIN")
-//         const response = yield call(adminLogoutStart)
-//         if (response.data.status === 200) {
-//             yield put(adminLogoutSuccess(response.data))
-//             Toast.fire({
-//                 icon: "success",
-//                 title: response.data.message,
-//             });
-//         } else {
-//             Toast.fire({
-//                 icon: "error",
-//                 title: response.data.message,
-//             });
-//         }
-//     } catch (error) {
-//         yield put(adminLogoutError(error.response))
-//     }
-// }
 
 export function* onLoadAdminStartAsync() {
     try {
@@ -316,9 +293,6 @@ export function* onAdminForgotPassword() {
     yield takeLatest(types.ADMIN_FORGOT_PASSWORD_START, onAdminForgotPasswordStartAsync);
 }
 
-// export function* onAdminLogout() {
-//     yield takeLatest(types.ADMIN_LOGOUT_START, onAdminLogoutStartAsync);
-// }
 
 export function* onLoadAdmin() {
     yield takeEvery(types.LOAD_ADMIN_START, onLoadAdminStartAsync)
@@ -342,7 +316,6 @@ const adminSagas = [
     fork(onAdminChangePassword),
     fork(onAdminResetPassword),
     fork(onAdminForgotPassword),
-    // fork(onAdminLogout),
     fork(onLoadAdmin),
     fork(onCreateAdmin),
     fork(onGetSingleAdmin),

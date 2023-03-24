@@ -49,7 +49,8 @@ const categoryReducer = (state = initialState, action) => {
         case types.DELETE_CATEGORY_SUCCESS:
             return {
                 ...state,
-                loading: true,
+                loading: false,
+                category: action.payload
             }
         case types.LOAD_CATEGORY_ERROR:
         case types.GET_SINGLE_CATEGORY_ERROR:

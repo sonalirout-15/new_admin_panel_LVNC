@@ -25,7 +25,7 @@ const UserDropdown = () => {
           <img
             style={{ height: '40px', width: '40px' }}
             alt="image"
-            src='../../../assets/img/avatar/avatar-1.png'
+            src='../../../assets/img/avatar/1.png'
             className="rounded-circle mr-1"
           />
         </MDBDropdownToggle>

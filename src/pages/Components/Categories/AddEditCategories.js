@@ -59,10 +59,6 @@ const AddEditCategories = () => {
       }
 }
 
-// if(message.status === 200){
-//   history.push('/categories')
-// }
-
   return (
       <div className="main-content">
         <section className="section">

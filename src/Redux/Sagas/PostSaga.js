@@ -38,7 +38,6 @@ const Toast = Swal.mixin({
 export function* onLoadPostStartAsync() {
     try {
         const response = yield call(loadPostApi);
-        console.log('RESPONSE~~~~~~~~~~~>>>', response.data.postsData)
         if (response.data.message === "Success") {
             yield put(loadPostSuccess(response.data.postsData))
         }

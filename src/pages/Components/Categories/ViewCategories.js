@@ -7,7 +7,7 @@ import { getSingleCategoryStart } from "../../../Redux/Actions/CategoryAction";
 const ViewCategories = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
-  const singleData = useSelector((state) => state?.categoryData?.category?.category);
+  const singleData = useSelector((state) => state);
   console.log('SingleData~~~~~~~~~>>>', singleData)
 
   useEffect(() => {
